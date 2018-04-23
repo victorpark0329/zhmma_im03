@@ -1,0 +1,70 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="zhmmaim.controller.CreateMenu" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showNavButton="true" navButtonPress="onNavBack" class="sideMenuSection">
+		<!-- HMMA IM Menu List -->
+		<List id="mainLeft" includeItemSelection="true" type="Active" insert="true" mode="SingleSelectMaster" selectionChange="onMenuPress" class="colorfulSideMenu">
+				<!--<StandardListItem id="abpplanning" title="ABP Planning" type="Active"/>-->
+				<!--<StandardListItem id="budgettransfer" title="Budget Transfer" type="Active"/>-->
+				<!--<StandardListItem id="iocreate" title="IO Creation" type="Active"/>-->
+				<!--<StandardListItem id="createpr" title="PR Creation" type="Active"/>-->
+				<!--<StandardListItem id="completeio" title="IO Completion" type="Active"/>-->
+				
+				<StandardListItem
+                    id = "abpplanning"
+                    class="draggable_list"
+                    title="ABP Planning"
+                    type="Active"
+                    icon="sap-icon://business-objects-experience"
+                    iconSize="1rem"
+                    iconInset="true"
+                    description="{type}"
+                    activeIcon="true">
+                </StandardListItem> 
+
+				<StandardListItem
+                    id = "budgettransfer"
+                    class="draggable_list"
+                    title="Budget Transfer"
+                    type="Active"
+                    icon="sap-icon://share-2"
+                    iconInset="true"
+                    description="{type}"
+                    activeIcon="true">
+                </StandardListItem> 
+
+				<StandardListItem
+                    id = "iocreate"
+                    class="draggable_list"
+                    title="IO Creation"
+                    type="Active"
+                    icon="sap-icon://create"
+                    iconInset="true"
+                    description="{type}"
+                    activeIcon="true">
+                </StandardListItem> 
+
+				<StandardListItem
+                    id = "createpr"
+                    class="draggable_list"
+                    title="PR Creation"
+                    type="Active"
+                    icon="sap-icon://create-session"
+                    iconInset="true"
+                    description="{type}"
+                    activeIcon="true">
+                </StandardListItem> 
+
+				<StandardListItem
+                    id = "completeio"
+                    class="draggable_list"
+                    title="IO Completion"
+                    type="Active"
+                    icon="sap-icon://complete"
+                    iconInset="true"
+                    description="{type}"
+                    activeIcon="true">
+                </StandardListItem> 
+				
+		</List>
+	</Page>
+</core:View>

@@ -1,0 +1,256 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:commons="sap.ui.commons" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="PRCreationCommonsPdf" showHeader="false" class="hiddenPrintArea">
+
+		<html:style>
+			.hiddenPrintArea {display:none}
+			
+			.sapUiBody {background-color:#fff}
+			
+			.fontSize .sapMInputBaseInner {font-size: 0.675rem !important;}
+			.hiddenPrintArea .sapUiTableCell&gt;.sapUiTv {font-size: 9px !important;}
+			
+  			.printBorderBox {border: 1px solid #bbb; margin:10px; padding: 5px}
+  			.printLineTitle {text-align:right; valign:middle; padding-right: 1%}
+			.printLineTitle .sapMFlexItem {width:100%}
+			.printPaddingLeft {padding-left:1%}
+			.printPaddingLeft2 {padding-left:2%}
+			.printFullSizeBox {width:75%}
+			.printFullSizeBox .sapMFlexItem {width:100%}
+			.printFullSizeBox2 .sapMFlexItem {width:28%}
+
+			.printFullSizeBox3Year {width:15%}
+			.printFullSizeBox3POSID {width:40%}
+			.printFullSizeBox3POSID .sapMFlexItem {width:100%}
+			.printFullSizeBox3POSIDD {width:45%}
+
+			.printFullSizeBox2, .printFullSizeBox3 {width:75%}
+
+			.printFullSizeBox2 .sapMFlexItem .sapMActionSelect {width:100% !important}
+			.printInput {width:50%}
+
+			.printHeaderBox {color:#000; background-color:#fff; margin: 10px ; padding: 5px}
+			.printHeaderBox .sapMFlexBox .sapMFlexItem .sapMLabel {font-size:14px; font-weight:normal; }
+			
+
+			.printHeaderBar {background-color:#bbb; margin: 10px; padding: 5px}
+
+			.printHeaderBarLeft{width:50%}
+			.printHeaderBarLeft .sapMFlexItem .sapMLabel {font-size:20px; font-weight:bold; color:#000 }
+			.printHeaderBarRight{width:50%; justify-content: flex-end;}
+			.printHeaderBarRight .sapMFlexItem .sapMLabel {font-size:20px; font-weight:bold; color:#000}
+
+
+			.printLineBox {margin: 0 1% 1% 1%; padding: 2% 1% 2% 1%}
+			.printLineBox .sapMFlexBox {width:100%;}
+
+			.printFullSizeBoxPRHeader {width:75%}
+			.printFullSizeBoxPRHeader .sapMFlexItem:nth-child(4n+1){width:45%}
+			.printFullSizeBoxPRHeader .sapMFlexItem:nth-child(4n+2){width:55%}
+
+		</html:style>
+	</Page>
+
+	<Page showHeader="false" class="hiddenPrintArea hiddenPrintPage">
+
+	<HBox class="printHeaderBar">
+		<HBox class="printHeaderBarLeft">
+			<Label text="{/BTSUBJ}"/>
+		</HBox>
+		<HBox class="printHeaderBarRight">
+			<Label text="Document No."/>
+			<Label text="{/BGTDOC}"/>
+		</HBox>
+	</HBox>
+
+	<HBox class="printLineBox">
+		<!--
+
+			<IconTabBar class="sapUiResponsiveContentPadding sapUiIOCreation">
+				<items>
+					<IconTabFilter text="WorkFlow" icon="sap-icon://manager" key="workflowInfo">
+					//-->
+					<VBox class="sapUiPRCreation">
+
+						<Table id="printCreateWF" showNoData="false" class="tblApprovalLine">
+							<infoToolbar>
+								<Toolbar>
+									<Text text="Approval Line" level="H5"/>
+								</Toolbar>
+							</infoToolbar>
+						</Table>
+						<Table id="printIOCreateCP" showNoData="false" class="tblCooperationLine">
+							<infoToolbar>
+								<Toolbar>
+									<Text text="Cooperation Line" level="H5"/>
+								</Toolbar>
+							</infoToolbar>
+						</Table>
+
+					</VBox>
+					<!--
+					</IconTabFilter>
+					<IconTabFilter text="Attachments" icon="sap-icon://attachment">
+					</IconTabFilter>
+					<IconTabFilter text="Comment" icon="sap-icon://comment" key="commentInfo">
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+			//-->
+		</HBox>
+
+
+			<VBox class="printHeaderBox">
+				<HBox><Label text="HEADER"/></HBox>
+			</VBox>
+			<VBox class="printBorderBox">
+				<HBox>
+					<HBox width="25%" class="printLineTitle"><Label text="IO" required="true" class="sapUiSmallMarginTop"/></HBox>
+					<HBox class="printFullSizeBoxPRHeader">
+							<Input type="Text" class="printInputSmall printClassAUFNR fontSize"/>
+							<Input type="Text" editable="false" class="printInputSmall printClassAUFNRD fontSize"/>
+					</HBox>
+				</HBox>
+
+<!-- 				<HBox>
+					<HBox width="25%" class="printLineTitle"><Label text="Ship to Loc" required="true" class="sapUiSmallMarginTop"/></HBox>
+					<HBox class="printFullSizeBoxPRHeader">
+							<Input type="Text" class="printInputSmall printClassWERKS fontSize" />
+							<Input type="Text" editable="false" class="printInputSmall printClassWERKSD fontSize" />
+					</HBox>
+				</HBox>
+ -->
+				<HBox>
+					<HBox width="25%" class="printLineTitle"><Label text="Need date" required="true" class="sapUiSmallMarginTop"/></HBox>
+					<HBox class="printFullSizeBoxPRHeader">
+							<Input type="Text" class="printInputSmall printClassLFDAT fontSize"/>
+							<Input type="Text" editable="false" class="printInputSmall fontSize"/>
+					</HBox>
+				</HBox>
+
+				<HBox>
+						<HBox width="25%" class="printLineTitle"><Label text="Description" required="true" class="sapUiSmallMarginTop"/></HBox>
+						<HBox class="printFullSizeBox"><Input type="Text" class="printInput printClassKTEXT fontSize"/></HBox>
+				</HBox>
+				<HBox>
+						<HBox width="25%" class="printLineTitle"><Label text="Purpose" class="sapUiSmallMarginTop"/></HBox>
+						<HBox class="printFullSizeBox">
+							<TextArea row="5" width="100%" wrapping="Soft" class="printClassPURPO fontSize"/>
+						</HBox>
+				</HBox>
+			</VBox>
+
+
+			<VBox class="printHeaderBox">
+				<HBox><Label text="SUPPLIER"/></HBox>
+			</VBox>
+			<VBox class="printBorderBox">
+				<HBox>
+						<HBox width="100%">
+							<table:Table id="printSupplierTB">
+					<table:Column autoResizeable="true">
+						<Label/>
+						<table:template>
+							<commons:TextField value="{C0}"/>
+						</table:template>
+					</table:Column>
+					<table:Column autoResizeable="true">
+						<Text text="Code"/>
+						<table:template>
+							<commons:TextField value="{C1}"/>
+						</table:template>
+					</table:Column>
+					<table:Column autoResizeable="true">
+						<Text text="Name"/>
+						<table:template>
+							<commons:TextField value="{C2}"/>
+						</table:template>
+					</table:Column>
+					<table:Column autoResizeable="true">
+						<Text text="Quote Amount"/>
+						<table:template>
+							<commons:TextField value="{C3}" textAlign="Right"/>
+						</table:template>
+					</table:Column>
+					<table:Column autoResizeable="true">
+						<Text text="Contact"/>
+						<table:template>
+							<commons:TextField value="{C4}"/>
+						</table:template>
+					</table:Column>
+					<table:Column autoResizeable="true">
+						<Text text="Phone"/>
+						<table:template>
+							<commons:TextField value="{C5}"/>
+						</table:template>
+					</table:Column>
+					<table:Column autoResizeable="true">
+						<Text text="Quote Acceptable?"/>
+						<table:template>
+							<commons:TextField value="{C6}"/>
+						</table:template>
+					</table:Column>
+					<table:Column autoResizeable="true">
+						<Text text="Remark"/>
+						<table:template>
+							<commons:TextField value="{C7}"/>
+						</table:template>
+					</table:Column>
+							</table:Table>
+						</HBox>
+				</HBox>
+			</VBox>
+<!-- 		</Page>
+		<Page showHeader="false" class="hiddenPrintArea hiddenPrintPage">
+ -->
+ 
+			<VBox class="printHeaderBox">
+				<HBox><Label text="ITEM"/></HBox>
+			</VBox>
+			<VBox class="printBorderBox">
+				<HBox>
+						<HBox width="100%">
+							<table:Table id="printItemTB">
+							<table:Column autoResizeable="true">
+								<Text text="MM#"/>
+								<table:template>
+									<commons:TextField value="{C0}"/>
+								</table:template>
+							</table:Column>
+							<table:Column autoResizeable="true">
+								<Text text="Description"/>
+								<table:template>
+									<commons:TextField value="{C1}"/>
+								</table:template>
+							</table:Column>
+							<table:Column autoResizeable="true">
+								<Text text="Qty" width="3rem"/>
+								<table:template>
+									<commons:TextField value="{C2}" textAlign="Right"/>
+								</table:template>
+							</table:Column>
+							<table:Column autoResizeable="true">
+								<Text text="Unit" width="3rem"/>
+								<table:template>
+									<commons:TextField value="{C3}"/>
+								</table:template>
+							</table:Column>
+							<table:Column autoResizeable="true">
+								<Text text="@Price"/>
+								<table:template>
+									<commons:TextField value="{C4}" textAlign="Right"/>
+								</table:template>
+							</table:Column>
+							<table:Column autoResizeable="true">
+								<Text text="Net Amount"/>
+								<table:template>
+									<commons:TextField value="{C5}" textAlign="Right"/>
+								</table:template>
+							</table:Column>
+						</table:Table>
+						</HBox>
+				</HBox>
+			</VBox>
+
+
+	</Page>
+</core:FragmentDefinition>

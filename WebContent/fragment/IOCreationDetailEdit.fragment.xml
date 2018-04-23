@@ -1,0 +1,259 @@
+<!-- Edit Page -->
+<!-- 
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns:commons="sap.ui.commons" xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Page id="IOCreationDetailEdit" showHeader="false">
+		<subHeader>
+			<Bar>
+				<contentLeft>
+					<Text text="Document No."/>
+					<Text text="{/BGTDOC}"/>
+				</contentLeft>
+				<contentRight>
+					<Button id="editsave" text="Save" type="Emphasized" press="onEditSavePress" />
+					<Button id="editcancel" text="Cancel" press="onEditCancelPress" />
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<IconTabBar class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter text="WorkFlow" icon="sap-icon://manager">
+					<commons:Button text="Approval Path" icon="sap-icon://search"
+						press="onSelectWorkFlow" />
+					<commons:Button text="Cooperation Path" icon="sap-icon://search"
+						press="onSelectCooperation" />
+					<Table id="oIOCreateWF" columns="{/IMApprLineNavi/results/}">
+						<columns>
+							<Column>
+								<Text text="{DUTY_NAME}" />
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem cells="{/IMApprLineNavi/results/}">
+								<Text text="{ENGLISH_NAME}" />
+							</ColumnListItem>
+							<ColumnListItem cells="{/IMApprLineNavi/results/}">
+								<Text text="{ATYPE}" />
+							</ColumnListItem>
+							<ColumnListItem cells="{/IMApprLineNavi/results/}"
+								visible="false">
+								<Text text="{USER_ID}" />
+							</ColumnListItem>
+						</items>
+					</Table>
+				</IconTabFilter>
+				<IconTabFilter text="Attachments" icon="sap-icon://attachment">
+					Attach Information
+					<form:SimpleForm>
+						<form:content>
+							<UploadCollection maximumFilenameLength="55"
+								maximumFileSize="10" multiple="true" sameFilenameAllowed="true"
+								instantUpload="false" showSeparators="All" change="onChange"
+								fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
+								uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts">
+							</UploadCollection>
+						</form:content>
+					</form:SimpleForm>
+				</IconTabFilter>
+				<IconTabFilter text="Comment" icon="sap-icon://comment">
+					Comment Information
+					<form:SimpleForm>
+						<form:content>
+							<Label text="Comment" class="sapUiSmallMarginTop" />
+							<TextArea/>
+						</form:content>
+					</form:SimpleForm>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+
+		Type Information
+		<form:SimpleForm title="Type">
+			<form:content>
+				<l:Grid defaultSpan="L1 M1 S2" class="sapUiSmallMarginTop">
+					<l:content>
+						<Text text="Type" />
+						<ActionSelect id="BGTYPE" selectedKey="B">
+							<items>
+								<core:Item key="A" text="With PR" />
+								<core:Item key="B" text="Without PR" />
+							</items>
+							<layoutData>
+								<l:GridData span="L2 M2 S3" />
+							</layoutData>
+						</ActionSelect>
+						<Text text="Est. Cost" />
+						<Input id="USER4" type="Text" value="{/IMIOPRNavi/results/0/USER4}">
+							<layoutData>
+								<l:GridData span="L1 M3 S4" />
+							</layoutData>
+						</Input>
+						<Text text="Project" />
+						<Input id="POSID" type="Text" value="{/IMIOPRNavi/results/0/POSID}">
+							<layoutData>
+								<l:GridData span="L3 M4 S4" />
+							</layoutData>
+						</Input>
+						<Input id="GJAHR" type="Text" value="{/IMIOPRNavi/results/0/GJAHR}" />
+					</l:content>
+				</l:Grid>
+			</form:content>
+		</form:SimpleForm>
+
+		IO-Basic Information
+		<form:SimpleForm title="IO-Basic">
+			<form:content>
+				<l:Grid class="sapUiSmallMarginTop">
+					<l:content>
+						<Text text="Plant" />
+						<Input id="WERKS" type="Text" value="{/IMIOPRNavi/results/0/WERKS}" />
+						<Text text="CC.Reqst" />
+						<Input id="KOSTV" type="Text" value="{/IMIOPRNavi/results/0/KOSTV}" />
+						<Text text="CC.Resp" />
+						<Input id="AKSTL" type="Text" value="{/IMIOPRNavi/results/0/AKSTL}" />
+						<Text text="Person.Responsible" />
+						<Input id="USER2" type="Text" value="{/IMIOPRNavi/results/0/USER2}" />
+					</l:content>
+					<l:content>
+						<Text text="Description" />
+						<Input id="KTEXT" type="Text" value="{/IMIOPRNavi/results/0/KTEXT}" />
+						<Text text="Purpose" />
+						<Input id="PURPO" type="Text" value="{/IMIOPRNavi/results/0/PURPO}" />
+					</l:content>
+				</l:Grid>
+			</form:content>
+		</form:SimpleForm>
+
+		IO-Schedule Information
+		<form:SimpleForm title="IO-Schedule">
+			<form:content>
+				<l:Grid defaultSpan="L2 M3 S4" class="sapUiSmallMarginTop">
+					<l:content>
+						<Text text="Approval" />
+						<Text text="PR" />
+						<Text text="PO" />
+						<Text text="GR" />
+						<Text text="Install" />
+						<Text text="Finish" />
+					</l:content>
+					<l:content>
+						<DatePicker id="USER5" value="{/IMIOPRNavi/results/0/USER5}"
+							displayFormat="MM/dd/yyyy" valueFormat="MMddyyyy" change="onDPchange" />
+						<DatePicker id="USER7" value="{/IMIOPRNavi/results/0/USER7}"
+							displayFormat="MM/dd/yyyy" valueFormat="MMddyyyy" change="onDPchange" />
+						<DatePicker id="PODATE" value="{/IMIOPRNavi/results/0/PODATE}"
+							displayFormat="MM/dd/yyyy" valueFormat="MMddyyyy" change="onDPchange" />
+						<DatePicker id="GRDATE" value="{/IMIOPRNavi/results/0/GRDATE}"
+							displayFormat="MM/dd/yyyy" valueFormat="MMddyyyy" change="onDPchange" />
+						<DatePicker id="INSDATE" value="{/IMIOPRNavi/results/0/INSDATE}"
+							displayFormat="MM/dd/yyyy" valueFormat="MMddyyyy" change="onDPchange" />
+						<DatePicker id="USER8" value="{/IMIOPRNavi/results/0/USER8}"
+							displayFormat="MM/dd/yyyy" valueFormat="MMddyyyy" change="onDPchange" />
+					</l:content>
+				</l:Grid>
+			</form:content>
+		</form:SimpleForm>
+
+		IO-IM Information
+		<form:SimpleForm title="IO-IM">
+			<form:content>
+				<l:Grid class="sapUiSmallMarginTop">
+					<l:content>
+						<Text text="IM.Profile" />
+						<Input id="IVPRO" type="Text" value="{/IMIOPRNavi/results/0/IVPRO}" />
+						<Text text="IM.Reason" />
+						<Input id="IZWEK" type="Text" value="{/IMIOPRNavi/results/0/IZWEK}" />
+						<Text text="Asset Class" />
+						<Input id="ANLKL" type="Text" value="{/IMIOPRNavi/results/0/ANLKL}" />
+						<Text text="Capital.Date" />
+						<DatePicker id="AKTIV" displayFormat="MM/dd/yyyy"
+							valueFormat="MMddyyyy" change="onDPchange" value="{/IMIOPRNavi/results/0/AKTIV}" />
+						<Text text="Asset Name" />
+						<Input id="TXT50" type="Text" value="{/IMIOPRNavi/results/0/TXT50}" />
+					</l:content>
+					<l:content>
+						<Text text="Existing Asset" />
+						<MultiInput id="oExistAssestToken"
+							tokens="{/IMIOPRNavi/results/0/IMIOPRAssetNavi/results/}"
+							showValueHelp="false">
+							<tokens>
+								<Token key="{SEQ}" text="{ANLN1}" />
+							</tokens>
+						</MultiInput>
+						<Text text="Disposal of existing asset" />
+						<RadioButtonGroup id="ASSET_DIS" columns="4">
+							<buttons>
+								<RadioButton text="Yes"/>
+								<RadioButton text="No" selected="true"/>
+							</buttons>
+						</RadioButtonGroup>
+					</l:content>
+				</l:Grid>
+			</form:content>
+		</form:SimpleForm>
+
+		Effect Information
+		<form:SimpleForm title="Effect ">
+			<form:content>
+				<l:Grid defaultSpan="L3 M3 S3" class="sapUiLargeMarginTop">
+					<l:content>
+						<Text text="Tangible" />
+						<Input id="EFFTA" type="Text" value="{/IMIOPRNavi/results/0/EFFTA}">
+							<layoutData>
+								<l:GridData span="L9 M9 S9" />
+							</layoutData>
+						</Input>
+					</l:content>
+					<l:content>
+						<Text text="Intangible" />
+						<Input id="EFFIN" type="Text" value="{/IMIOPRNavi/results/0/EFFIN}">
+							<layoutData>
+								<l:GridData span="L9 M9 S9" />
+							</layoutData>
+						</Input>
+					</l:content>
+					<l:content>
+						<Text text="Location" />
+						<Input id="TPLNR" type="Text" value="{/IMIOPRNavi/results/0/TPLNR}">
+							<layoutData>
+								<l:GridData span="L9 M9 S9" />
+							</layoutData>
+						</Input>
+					</l:content>
+				</l:Grid>
+			</form:content>
+
+			<l:Grid defaultSpan="L8 M8 S8" class="sapUiSmallMarginTop">
+				<l:content>
+					<table:Table id="oIOPayTB" visibleRowCount="5"
+						class="sapUiSmallMarginBottom" rows="{/IMIOPRNavi/results/0/IMIOPRROINavi/results/}">
+						<table:columns>
+							<table:Column>
+								<Text text="Year" />
+								<table:template>
+									<commons:TextField value="{GJAHR}" />
+								</table:template>
+							</table:Column>
+							<table:Column>
+								<Text text="Return" />
+								<table:template>
+									<commons:TextField value="{RTNAMT}" />
+								</table:template>
+							</table:Column>
+						</table:columns>
+					</table:Table>
+				</l:content>
+				<l:content> <Text text="IM." class="sapUiLargeMarginBegin sapUiLargeMarginTop"> 
+					<layoutData> <l:GridData span="L1 M1 S1" /> </layoutData> </Text> <Input 
+					type="Text" placeholder="66,413" editable="false" class="sapUiLargeMarginTop"> 
+					<layoutData> <l:GridData span="L2 M3 S4" /> </layoutData> </Input> <Text 
+					text="Payback Period" class="sapUiLargeMarginTop"> <layoutData> <l:GridData 
+					span="L2 M3 S4" /> </layoutData> </Text> <Input type="Text" placeholder="1.56" 
+					editable="false" class="sapUiLargeMarginTop"> <layoutData> <l:GridData span="L2 
+					M2 S2" /> </layoutData> </Input> </l:content>
+			</l:Grid>
+		</form:SimpleForm>
+	</Page>
+</core:FragmentDefinition> -->

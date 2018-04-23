@@ -1,0 +1,217 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:commons="sap.ui.commons" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+  <Page id="PRCreationCommons" showHeader="false" class="updatePRCreationCommons" enableScrolling="false">
+    <!-- General Information -->
+    <form:SimpleForm id="PRGeneralDisplay" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnL="1" columnM="1" title="HEADER" class="updatedSimpleForm">
+      <form:content>
+        <Label text="IO" required="true" class="sapUiSmallMarginTop"/>
+        <Input id="AUFNR" type="Text" required="true" placeholder="(1)" change="zhmmaim.util.Commons.IODefaultValue">
+          <layoutData>
+            <l:GridData span="L2 M3 S3"/>
+          </layoutData>
+        </Input>
+        <Input id="AUFNRD" type="Text" value="{/MESSAGE}" editable="false"/>
+        <!-- Already Approval -->
+        <!-- <commons:CheckBox id="APPROVED" text="Already Approved" class="sapUiSmallMarginTop" change="onAlreadyAP"/> -->
+        <Label text="Ship to Loc" required="true" class="sapUiSmallMarginTop"/>
+        <Input id="WERKS" type="Text" value="" required="true" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" maxSuggestionWidth="350px" showValueHelp="true" showSuggestion="true" suggestionRows="{/results}" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+          <suggestionColumns>
+            <Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+              <Label text="Code"/>
+            </Column>
+            <Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+              <Label text="Info"/>
+            </Column>
+          </suggestionColumns>
+          <suggestionRows>
+            <ColumnListItem>
+              <cells>
+                <Label text="{INPUT}"/>
+                <Label text="{TEXT}"/>
+              </cells>
+            </ColumnListItem>
+          </suggestionRows>
+          <layoutData>
+            <l:GridData span="L1 M3 S3"/>
+          </layoutData>
+        </Input>
+        <Input id="WERKSD" type="Text" value="{/WERKSD}" editable="false"/>
+        <Label text="Storage location" class="sapUiSmallMarginTop"/>
+        <Input id="LGORT" type="Text" value="" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" maxSuggestionWidth="350px" showValueHelp="true" showSuggestion="true" suggestionRows="{/results}" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+          <suggestionColumns>
+            <Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+              <Label text="Code"/>
+            </Column>
+            <Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+              <Label text="Info"/>
+            </Column>
+          </suggestionColumns>
+          <suggestionRows>
+            <ColumnListItem>
+              <cells>
+                <Label text="{INPUT}"/>
+                <Label text="{TEXT}"/>
+              </cells>
+            </ColumnListItem>
+          </suggestionRows>
+          <layoutData>
+            <l:GridData span="L1 M3 S3"/>
+          </layoutData>
+        </Input>
+        <Input id="LGORTD" type="Text" value="{/LGORTD}" editable="false"/>
+        <Label text="purchasing group" required="true" class="sapUiSmallMarginTop"/>
+        <Input id="EKGRP" type="Text" value="" required="true" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" maxSuggestionWidth="350px" showValueHelp="true" showSuggestion="true" suggestionRows="{/results}" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+          <suggestionColumns>
+            <Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+              <Label text="Code"/>
+            </Column>
+            <Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+              <Label text="Info"/>
+            </Column>
+          </suggestionColumns>
+          <suggestionRows>
+            <ColumnListItem>
+              <cells>
+                <Label text="{INPUT}"/>
+                <Label text="{TEXT}"/>
+              </cells>
+            </ColumnListItem>
+          </suggestionRows>
+          <layoutData>
+            <l:GridData span="L1 M3 S3"/>
+          </layoutData>
+        </Input>
+        <Input id="EKGRPD" type="Text" value="{/EKGRPD}" editable="false"/>
+        <Label text="Need date" required="true" class="sapUiSmallMarginTop"/>
+        <DatePicker id="LFDAT" change="onDPchange" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" required="true">
+          <layoutData>
+            <l:GridData span="L2 M3 S3"/>
+          </layoutData>
+        </DatePicker>
+        <Label text="Description" required="true" class="sapUiSmallMarginTop"/>
+        <Input id="KTEXT" type="Text" required="true" value=""/>
+        <Label text="Purpose" class="sapUiSmallMarginTop"/>
+        <TextArea id="PURPO" row="3" cols="100" wrapping="Soft" liveChange="zhmmaim.util.Commons.oAutoExpand"/>
+      </form:content>
+    </form:SimpleForm>
+    <!-- Supplier Information -->
+    <form:SimpleForm id="PRSupplierDisplay" title="SUPPLIER" class="updatedSimpleForm updatedSimpleFormFixWidth90">
+      <form:content>
+        <table:Table id="oSupplierTB" visibleRowCount="4" rows="{/}">
+          <table:Column autoResizeable="true">
+            <Label/>
+            <table:template>
+              <commons:TextField id="supplier" value="{supplier}"/>
+            </table:template>
+          </table:Column>
+          <table:Column autoResizeable="true">
+            <Text text="Code"/>
+            <table:template>
+              <!-- <commons:TextField id="LIFNR" value="{LIFNR}" change="supplierDefaultValue" /> -->
+              <commons:ValueHelpField id="LIFNR" value="{LIFNR}" change="supplierDefaultValue" valueHelpRequest="zhmmaim.util.Commons.showAllList"/>
+            </table:template>
+          </table:Column>
+          <table:Column autoResizeable="true">
+            <Text text="Name"/>
+            <table:template>
+              <commons:TextField id="NAME1" value="{NAME1}"/>
+            </table:template>
+          </table:Column>
+          <table:Column autoResizeable="true">
+            <Text text="Quote Amount"/>
+            <table:template>
+              <commons:TextField id="NETWR" value="{NETWR}" liveChange="zhmmaim.util.Commons.onQuote"/>
+            </table:template>
+          </table:Column>
+          <table:Column autoResizeable="true">
+            <Text text="Contact"/>
+            <table:template>
+              <commons:TextField id="ZSABE" value="{ZSABE}"/>
+            </table:template>
+          </table:Column>
+          <table:Column autoResizeable="true">
+            <Text text="Phone"/>
+            <table:template>
+              <commons:TextField id="TEL_NUMBER" value="{TEL_NUMBER}"/>
+            </table:template>
+          </table:Column>
+          <table:Column autoResizeable="true">
+            <Text text="Quote Acceptable?"/>
+            <table:template>
+              <commons:TextField id="ACCEPT" value="{ACCEPT}"/>
+            </table:template>
+          </table:Column>
+          <table:Column autoResizeable="true">
+            <Text text="Remark"/>
+            <table:template>
+              <commons:TextField id="KVERM" value="{KVERM}"/>
+            </table:template>
+          </table:Column>
+        </table:Table>
+      </form:content>
+    </form:SimpleForm>
+    <!-- Item Information -->
+    <Panel class="prCreationTitle">
+      <headerToolbar>
+        <Toolbar class="updatedToolBarHeaderTitle">
+          <Title text="ITEM" id="myItemAddBtn" class="myItemAddButton"/>
+          <Button id="oAddPRItem" icon="sap-icon://add" press="addMeterialItemRow" class="myItemAddButton"/>
+        </Toolbar>
+      </headerToolbar>
+
+      <content>
+        <form:SimpleForm id="PRItemDisplay" class="updatedItemBody">
+          <form:content>
+            <table:Table id="oItemTB" visibleRowCount="4" rows="{/}">
+              <table:Column autoResizeable="true">
+                <Text text="MM#"/>
+                <table:template>
+                  <commons:TextField id="MATNR" value="{MATNR}" change="MeterialDefaultValue"/>
+                  <!-- <commons:ValueHelpField id="MATNR" value="{MATNR}" change="MeterialDefaultValue"/> -->
+                </table:template>
+              </table:Column>
+              <table:Column autoResizeable="true" width="20rem">
+                <Text text="Description"/>
+                <table:template >
+                  <commons:TextField id="MAKTX" value="{MAKTX}" width="20rem"/>
+                </table:template>
+              </table:Column>
+              <table:Column autoResizeable="true">
+                <Text text="Qty"/>
+                <table:template>
+                  <commons:TextField id="MENGE" value="{MENGE}" liveChange="onSum" />
+                </table:template>
+              </table:Column>
+              <table:Column autoResizeable="true">
+                <Text text="Unit"/>
+                <table:template>
+                  <commons:TextField id="MEINS" value="{MEINS}"/>
+                </table:template>
+              </table:Column>
+              <table:Column autoResizeable="true">
+                <Text text="@Price"/>
+                <table:template>
+                  <commons:TextField id="PREIS" value="{PREIS}" liveChange="onSum" />
+                </table:template>
+              </table:Column>
+              <table:Column autoResizeable="true">
+                <Text text="Net Amount"/>
+                <table:template>
+                  <commons:TextField id="TOT" value="{TOT}" editable="false" />
+                </table:template>
+              </table:Column>
+<!-- IG Moon -->              
+			<table:Column width="5rem" id="idPRdelete">
+				<Text text="Delete"/>
+				<table:template>
+					<Image src="resources/images/delete.png" width="15px" height="15px" press="onDeletePRItem"/>
+				</table:template>
+			</table:Column>
+
+            </table:Table>
+          </form:content>
+        </form:SimpleForm>
+      </content>
+    </Panel>
+    <Text id="TOTA" visible="false" liveChange="zhmmaim.util.Commons.onPRCheckAmount"/>
+  </Page>
+</core:FragmentDefinition>

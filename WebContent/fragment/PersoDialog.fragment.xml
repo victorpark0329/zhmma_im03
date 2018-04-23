@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		title="Select Showing Column"
+		confirm="handleSelect"
+		cancel = "handleSelect"
+		items = "{/results}"
+	>
+	<StandardListItem
+		info="{KEY}"
+		title="{TEXT}"
+		type="Active"
+	/>	
+	</SelectDialog>
+</core:FragmentDefinition> 

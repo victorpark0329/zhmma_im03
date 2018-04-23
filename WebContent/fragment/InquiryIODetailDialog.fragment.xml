@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:commons="sap.ui.commons" xmlns:form="sap.ui.layout.form"
+	xmlns:table="sap.ui.table" xmlns:l="sap.ui.layout">
+	<Dialog id="oInquiryIODetailDialog"
+			contentWidth = "80%"
+			contentHeight = "80%"
+			afterClose="zhmmaim.util.Commons.handleCloseDialog"
+			>
+			<buttons>
+				<Button id="oPDFSave" visible="false" icon="sap-icon://save" type="Emphasized" press="zhmmaim.util.AttachPrint.generatePDF"/>
+				<Button text="Close" press="zhmmaim.util.Commons.handleCloseDialog"/>
+			</buttons>
+	</Dialog>
+</core:FragmentDefinition>

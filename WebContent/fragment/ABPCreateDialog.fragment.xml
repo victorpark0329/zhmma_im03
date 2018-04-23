@@ -1,0 +1,678 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml"
+						 xmlns:form = "sap.ui.layout.form" xmlns:commons="sap.ui.commons" xmlns:unified="sap.ui.unified" controllerName="zhmmaim.controller.BudgetPlanning">
+	<Dialog id="oABPCreateDialog" title="ABP PLAN - Create" contentWidth = "80%"
+			contentHeight = "80%" class="sapUiPopupWithPadding sapUiABPPlanningCreate updateABPCreateDialog">
+		<IconTabBar class="sapUiResponsiveContentPadding updatedABPDialogAttachment " expanded="false">
+			<items>
+				<IconTabFilter text="Attachments" icon="sap-icon://attachment">
+					<!-- Attach Information -->
+					<form:SimpleForm id="IOAttachDisplay">
+						<form:content>
+						<UploadCollection
+							id="oUploadCollection"
+							showNoData="false"
+							maximumFilenameLength="500"
+							maximumFileSize="20"
+							multiple="true"
+							sameFilenameAllowed="true"
+							instantUpload="false"
+							showSeparators="All"
+							>
+						</UploadCollection>
+						</form:content>
+					</form:SimpleForm>	
+				</IconTabFilter>
+				<IconTabFilter text="Summary" icon="sap-icon://image-viewer">
+						<!-- Attach Information -->
+						<form:SimpleForm id="IOImageDisplay">
+							<form:content>
+								<unified:FileUploader
+									id="oImageUploader"
+									name="myFileUpload"
+									width="400px"
+									tooltip="jpg,bmp,gif,tif,png file only"
+									uploadComplete="handleUploadComplete"
+									change="handleImageChange"
+									typeMissmatch="zhmmaim.util.Commons.handleTypeMissmatch"
+									style="Emphasized"
+									fileType="jpg,bmp,gif,tif,png"
+									placeholder="Choose a Image for Upload..."/>
+							</form:content>
+						</form:SimpleForm>
+						<Image
+							id="oImage"
+							densityAware="false"
+							width="1000px" >
+						</Image>
+					</IconTabFilter>
+			</items>
+		</IconTabBar>
+			 
+		<!-- Header -->
+		<form:SimpleForm layout = "ResponsiveGridLayout"
+						labelSpanL = "3"
+						labelSpanM = "3"
+						emptySpanL = "1"
+						emptySpanM = "1"
+						columnL = "1"
+						columnM = "1" 
+						title="Header"
+						class="updatedSimpleForm">
+			<form:content>
+				<Label text="Description" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="TXT50" type="Text" required="true"/>
+				<Label text="Purpose" class="sapUiSmallMarginTop"/>
+				<TextArea id="PURPO" row="3" cols="100" wrapping="Soft" liveChange="zhmmaim.util.Commons.oAutoExpand"/>
+			</form:content>
+		</form:SimpleForm>
+		
+		<!-- General Information -->
+			<form:SimpleForm layout = "ResponsiveGridLayout"
+						labelSpanL = "4"
+						labelSpanM = "4"
+						emptySpanL = "0"
+						emptySpanM = "0"
+						columnL = "1"
+						columnM = "1" 
+						title="General Information"
+						class="updatedSimpleForm">
+			<form:content>
+				<Label text="Project Code" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="ZPROJ01" type="Text" enabled="false" required="true">
+					<layoutData>
+						<l:GridData span="L3 M3 S3"/>
+					</layoutData>
+				</Input>
+				
+				<Label text="Priority" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="PRIORI" type="Text" value="" required="true"
+							maxSuggestionWidth="350px"
+							showSuggestion="true" showValueHelp="true"
+							suggestionRows="{/results}"
+							change = "zhmmaim.util.Commons.onDescription"
+							liveChange="zhmmaim.util.Commons.onCallPossible"
+							valueHelpRequest="zhmmaim.util.Commons.showAllList">
+							<suggestionColumns>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Code"/> 
+									</Column>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Info"/>
+									</Column>
+							</suggestionColumns>
+							<suggestionRows>
+								<ColumnListItem>
+									<cells>
+										<Label text="{INPUT}"/>
+										<Label text="{TEXT}"/>
+									</cells>
+								</ColumnListItem>
+							</suggestionRows>
+					<layoutData>
+						<l:GridData span="L3 M3 S3"/>
+					</layoutData>
+				</Input>
+				<Input id="PRIORID" type="Text" value="{/PRIORID}" editable="false"/>
+				
+				<Label text="Reason Code" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="IZWEK" type="Text" value="" required="true"
+							maxSuggestionWidth="350px"
+							showSuggestion="true" showValueHelp="true"
+							suggestionRows="{/results}"
+							change = "zhmmaim.util.Commons.onDescription"
+							liveChange="zhmmaim.util.Commons.onCallPossible"
+							valueHelpRequest="zhmmaim.util.Commons.showAllList">
+							<suggestionColumns>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Code"/> 
+									</Column>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Info"/>
+									</Column>
+							</suggestionColumns>
+							<suggestionRows>
+								<ColumnListItem>
+									<cells>
+										<Label text="{INPUT}"/>
+										<Label text="{TEXT}"/>
+									</cells>
+								</ColumnListItem>
+							</suggestionRows>
+					<layoutData>
+						<l:GridData span="L3 M3 S3"/>
+					</layoutData>
+				</Input>
+				<Input id="IZWEKD" type="Text" value="{/IZWEKD}" editable="false"/>
+				
+				<Label text="Asset Class" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="USR00" type="Text" value="" required="true"
+							maxSuggestionWidth="350px"
+							showSuggestion="true" showValueHelp="true"
+							suggestionRows="{/results}"
+							change = "zhmmaim.util.Commons.onDescription"
+							liveChange="zhmmaim.util.Commons.onCallPossible"
+							valueHelpRequest="zhmmaim.util.Commons.showAllList">
+							<suggestionColumns>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Code"/> 
+									</Column>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Info"/>
+									</Column>
+							</suggestionColumns>
+							<suggestionRows>
+								<ColumnListItem>
+									<cells>
+										<Label text="{INPUT}"/>
+										<Label text="{TEXT}"/>
+									</cells>
+								</ColumnListItem>
+							</suggestionRows>
+					<layoutData>
+						<l:GridData span="L3 M3 S3"/>
+					</layoutData>
+				</Input>
+				<Input id="USR00D" type="Text" value="{/USR00D}" editable="false"/>
+				
+				<Label text="Cost center" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="VKOSTL" type="Text" value="" required="true"
+							maxSuggestionWidth="350px"
+							showSuggestion="true" showValueHelp="true"
+							suggestionRows="{/results}"
+							change = "zhmmaim.util.Commons.onDescription"
+							liveChange="zhmmaim.util.Commons.onCallPossible"
+							valueHelpRequest="zhmmaim.util.Commons.showAllList">
+							<suggestionColumns>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Code"/> 
+									</Column>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Info"/>
+									</Column>
+							</suggestionColumns>
+							<suggestionRows>
+								<ColumnListItem>
+									<cells>
+										<Label text="{INPUT}"/>
+										<Label text="{TEXT}"/>
+									</cells>
+								</ColumnListItem>
+							</suggestionRows>
+					<layoutData>
+						<l:GridData span="L3 M3 S3"/>
+					</layoutData>
+				</Input>
+				
+				<Input id="VKOSTLD" type="Text" value="{/VKOSTLD}" editable="false"/>
+				
+				<Label text="Plant" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="WERKS" type="Text" value="" required="true"
+							maxSuggestionWidth="350px"
+							showSuggestion="true" showValueHelp="true"
+							suggestionRows="{/results}"
+							change = "zhmmaim.util.Commons.onDescription"
+							liveChange="zhmmaim.util.Commons.onCallPossible"
+							valueHelpRequest="zhmmaim.util.Commons.showAllList">
+							<suggestionColumns>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Code"/> 
+									</Column>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Info"/>
+									</Column>
+							</suggestionColumns>
+							<suggestionRows>
+								<ColumnListItem>
+									<cells>
+										<Label text="{INPUT}"/>
+										<Label text="{TEXT}"/>
+									</cells>
+								</ColumnListItem>
+							</suggestionRows>
+					<layoutData>
+						<l:GridData span="L3 M3 S3"/>
+					</layoutData>
+				</Input>
+				<Input id="WERKSD" type="Text" value="{/WERKSD}" editable="false"/>
+				
+				<Label text="IM.Classification" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="USR03" type="Text" value="" required="true"
+							maxSuggestionWidth="350px"
+							showSuggestion="true" showValueHelp="true"
+							suggestionRows="{/results}"
+							change = "zhmmaim.util.Commons.onDescription"
+							liveChange="zhmmaim.util.Commons.onCallPossible"
+							valueHelpRequest="zhmmaim.util.Commons.showAllList">
+							<suggestionColumns>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Code"/> 
+									</Column>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Info"/>
+									</Column>
+							</suggestionColumns>
+							<suggestionRows>
+								<ColumnListItem>
+									<cells>
+										<Label text="{INPUT}"/>
+										<Label text="{TEXT}"/>
+									</cells>
+								</ColumnListItem>
+							</suggestionRows>
+					<layoutData>
+						<l:GridData span="L3 M3 S3"/>
+					</layoutData>
+				</Input>
+				<Input id="USR03D" type="Text" value="{/USR03D}" editable="false"/>
+				
+				<Label text="Scale" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="SIZECL" type="Text" value="" required="true"
+							maxSuggestionWidth="350px"
+							showSuggestion="true" showValueHelp="true"
+							suggestionRows="{/results}"
+							change = "zhmmaim.util.Commons.onDescription"
+							liveChange="zhmmaim.util.Commons.onCallPossible"
+							valueHelpRequest="zhmmaim.util.Commons.showAllList">
+							<suggestionColumns>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Code"/> 
+									</Column>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Info"/>
+									</Column>
+							</suggestionColumns>
+							<suggestionRows>
+								<ColumnListItem>
+									<cells>
+										<Label text="{INPUT}"/>
+										<Label text="{TEXT}"/>
+									</cells>
+								</ColumnListItem>
+							</suggestionRows>
+					<layoutData>
+						<l:GridData span="L3 M3 S3"/>
+					</layoutData>
+				</Input>
+				<Input id="SIZECLD" type="Text" value="{/SIZECLD}" editable="false"/>
+				
+				<Label text="Category" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="USR02" type="Text" value="" required="true"
+							maxSuggestionWidth="350px"
+							showSuggestion="true" showValueHelp="true"
+							suggestionRows="{/results}"
+							change = "zhmmaim.util.Commons.onDescription"
+							liveChange="zhmmaim.util.Commons.onCallPossible"
+							valueHelpRequest="zhmmaim.util.Commons.showAllList">
+							<suggestionColumns>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Code"/> 
+									</Column>
+									<Column
+										hAlign="Begin"
+										popinDisplay="Inline"
+										demandPopin="true">
+										<Label text="Info"/>
+									</Column>
+							</suggestionColumns>
+							<suggestionRows>
+								<ColumnListItem>
+									<cells>
+										<Label text="{INPUT}"/>
+										<Label text="{TEXT}"/>
+									</cells>
+								</ColumnListItem>
+							</suggestionRows>
+					<layoutData>
+						<l:GridData span="L3 M3 S3"/>
+					</layoutData>
+				</Input>
+				<Input id="USR02D" type="Text" value="{/USR02D}" editable="false"/>
+				
+			</form:content>
+		</form:SimpleForm>
+	
+		<!-- Project-Schedule Information -->
+		<form:SimpleForm title="Project Schedule" class="mySimpleForm updatedSimpleForm updatedSimpleFormFixWidth90">
+			<form:content>
+			<l:Grid defaultSpan="L2 M3 S4" class="sapUiSmallMarginTop">
+					<l:content>
+						<Label text="Approval" required="true"/>
+						<Label text="PR" required="true"/>
+						<Label text="PO" />
+						<Label text="GR" />
+						<Label text="Install" />
+						<Label text="Finish" required="true"/>
+					</l:content>
+					<l:content>
+						<DatePicker id="GDATU" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="WDATU" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="PODATE" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="USR01" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="USR08" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="USR09" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+					</l:content>
+			</l:Grid>
+			</form:content>
+		</form:SimpleForm>		
+		
+		<!-- Detail Table Information -->
+		<Panel>
+			<headerToolbar>
+				<Toolbar class="updatedToolBarHeaderTitle2">
+					<Title text="Details"/>
+				</Toolbar>
+			</headerToolbar>
+			<content>
+				<form:SimpleForm	
+						layout = "ResponsiveGridLayout" class="updatedItemBody"
+						>
+					<form:content>
+						<table:Table id="oABPCreateItemTB" visibleRowCount="3" rows="{/}" >
+						<table:title>
+							<Toolbar>
+								<Title text="Items" titleStyle="H4"/>
+								<core:Icon src="add" press="zhmmaim.util.Commons.addTabRow"/>
+							</Toolbar>
+						</table:title>
+							
+						<table:columns>
+							<table:Column>
+								<Text text="Item"/>
+								<table:template>
+									<commons:TextField id="MATNR" value="{MATNR}"/>
+								</table:template>
+							</table:Column>
+							<table:Column width="20rem">
+								<Text text="Description" />
+								<table:template>
+									<commons:TextField id="MAKTX" value="{MAKTX}" width="20rem"/>
+								</table:template>
+							</table:Column>
+							<table:Column>
+								<Text text="Cost"/>
+								<table:template>
+									<commons:TextField id="PREIS" value="{PREIS}" liveChange="zhmmaim.util.Commons.onSum"/>
+								</table:template>
+							</table:Column>
+							<table:Column>
+								<Text text="Qty"/>
+								<table:template>
+									<commons:TextField id="MENGE" value="{MENGE}" liveChange="zhmmaim.util.Commons.onSum"/>
+								</table:template>
+							</table:Column>
+							<table:Column>
+								<Text text="Tax(10%)"/>
+								<table:template>
+									<commons:TextField id="TAX" value="{TAX}" editable="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column>
+								<Text text="Shipping"/>
+								<table:template>
+									<commons:TextField id="SHIPPING" value="{SHIPPING}" liveChange="zhmmaim.util.Commons.onSum"/>
+								</table:template>
+							</table:Column>
+							<table:Column>
+								<Text text="SubTotal"/>
+								<table:template>
+									<commons:TextField id="TOT" value="{TOT}" editable="false"/>
+								</table:template>
+							</table:Column>
+						</table:columns>
+					</table:Table>
+					<Label>
+						<layoutData>
+							<l:GridData span="L8 M8 S8"/>
+						</layoutData>
+					</Label>
+					<Text text="Total :" class="sapUiSmallMarginTop">
+						<layoutData>
+							<l:GridData span="L1 M1 S1"/>
+						</layoutData>
+					</Text>
+					<Input id="TOTA" type="Text" editable="false" liveChange="zhmmaim.util.Commons.onAverage" textAlign="left" width="20rem">
+						<layoutData>
+							<l:GridData span="L1 M1 S1" width="20rem"/>
+						</layoutData>
+					</Input>	
+					<Label>
+						<layoutData>
+							<l:GridData span="L1 M1 S1"/>
+						</layoutData>
+					</Label>
+					
+				<table:Table id="oABPMonthTB" visibleRowCount="1" rows="{/}">
+					<table:title>
+						<Toolbar>
+							<Title text="Monthly Plan" titleStyle="H4"/>
+						</Toolbar>
+					</table:title>
+					<table:Column resizable="false">
+						<Text text="Jan" />
+						<table:template>
+							<commons:TextField id="WTP01" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Feb" />
+						<table:template>
+							<commons:TextField id="WTP02" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Mar" />
+						<table:template>
+							<commons:TextField id="WTP03" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Apr" />
+						<table:template>
+							<commons:TextField id="WTP04" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="May" />
+						<table:template>
+							<commons:TextField id="WTP05" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Jun" />
+						<table:template>
+							<commons:TextField id="WTP06" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Jul" />
+						<table:template>
+							<commons:TextField id="WTP07" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Aug" />
+						<table:template>
+							<commons:TextField id="WTP08" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Sep" />
+						<table:template>
+							<commons:TextField id="WTP09" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Oct" />
+						<table:template>
+							<commons:TextField id="WTP10" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Nov" />
+						<table:template>
+							<commons:TextField id="WTP11" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text text="Dec" />
+						<table:template>
+							<commons:TextField id="WTP12" textAlign="Left" liveChange="zhmmaim.util.Commons.onlyInputNumber"/>
+						</table:template>
+					</table:Column>	
+				</table:Table>
+				</form:content>
+			</form:SimpleForm>	
+		</content>
+	</Panel>
+		
+		<!-- Effect Information -->
+		<form:SimpleForm id="IOEffectDisplay" 
+						layout = "ResponsiveGridLayout"
+						labelSpanL = "2"
+						labelSpanM = "2"
+						emptySpanL = "1"
+						emptySpanM = "1"
+						columnL = "1"
+						columnM = "1"
+						title="Effect"
+						class="updatedSimpleForm">
+			<form:content>
+				<Label text="Tangible" class="sapUiSmallMarginTop"/>
+				<TextArea id="EFFTA" row="3" cols="100" wrapping="Soft" value="{/EFFTA}" liveChange="zhmmaim.util.Commons.oAutoExpand"/>
+				<Label text="Intangible" class="sapUiSmallMarginTop"/>
+				<TextArea id="EFFIN" row="3" cols="100" wrapping="Soft" value="{/EFFIN}" liveChange="zhmmaim.util.Commons.oAutoExpand"/>
+				<Label text="Location" class="sapUiSmallMarginTop"/>
+				<TextArea id="TPLNR" row="3" cols="100" wrapping="Soft" value="{/TPLNR}" liveChange="zhmmaim.util.Commons.oAutoExpand"/>
+				<Label text="Revenue" class="sapUiSmallMarginTop"/>
+				<table:Table id="oABPPayTB" visibleRowCount="1" rows="{/}">
+					<!-- <table:title>
+						<Toolbar>
+							<Title text="Revenue" titleStyle="H4"/>
+						</Toolbar>
+					</table:title> -->
+					<table:Column resizable="false">
+						<Text id="GJAHR1" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT0" liveChange="zhmmaim.util.Commons.onAverage"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR2" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT1" liveChange="zhmmaim.util.Commons.onAverage"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR3" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT2" liveChange="zhmmaim.util.Commons.onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR4" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT3" liveChange="zhmmaim.util.Commons.onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR5" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT4" liveChange="zhmmaim.util.Commons.onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR6" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT5" liveChange="zhmmaim.util.Commons.onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR7" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT6" liveChange="zhmmaim.util.Commons.onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR8" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT7" liveChange="zhmmaim.util.Commons.onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR9" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT8" liveChange="zhmmaim.util.Commons.onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR10" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT9" liveChange="zhmmaim.util.Commons.onAverage" />
+						</table:template>
+					</table:Column>
+				</table:Table>
+				<Label/>
+				<Text text="Payback Period:" class="sapUiSmallMarginTop">
+					<layoutData>
+						<l:GridData span="L2 M2 S2"/>
+					</layoutData>
+				</Text>
+				<Input id="ROI" type="Text" editable="false" />	
+			</form:content>
+		</form:SimpleForm>	
+		
+		<buttons>
+
+			<button id="oABPSAVE" text="SAVE" type="Emphasized" press="onSaveDialog"/>
+			<button id="oABPUPDATE" text="UPDATE" type="Emphasized" press="onUpdateDialog" visible="false"/>
+			<button id="oABPCANCEL" text="CANCEL" type="Reject" press="onCancelDialog"/>
+			
+		</buttons>
+
+	</Dialog>
+</core:FragmentDefinition>

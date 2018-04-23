@@ -1,0 +1,55 @@
+<mvc:View controllerName="zhmmaim.controller.login" xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core" xmlns:form="sap.ui.commons.form" xmlns:l="sap.ui.layout"
+  xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">
+  <html:style>
+    .myLoginGuideColor {
+    color:white;
+    }
+  </html:style>
+  <Page class="sapUiFioriObjectPage sapUiLogin" title="HMMA IM LOGIN">
+
+    <content>
+      <HBox class="loginContentsBox">
+        <HBox width="50%" class="loginContentsLogo">
+        </HBox>
+        <HBox width="50%" class="loginInputArea">
+
+          <form:SimpleForm maxContainerCols="3"
+            layout="ResponsiveLayout">
+            <form:content>
+              <VBox>
+                <HBox class="loginInputText">
+                  <Input id="username" type="Text" class="sapUiId"
+                    placeholder="Username(ex.HMM100100)" />
+                </HBox>
+
+                <HBox class="loginInputText">
+                  <Input id="password" type="Password" class="sapUiPw"
+                    placeholder="Password" />
+                </HBox>
+
+                <HBox class="loginButtonArea">
+                  <Button id="login" press="UserAuthentication" text="LOGIN"
+                    class="loginBtn" />
+                  <!-- <Button id="pwdRecover" text="Password Recovery" press="PasswordRecovery"
+                    class="pwdRecoveryBtn" /> -->
+                </HBox>
+                <HBox class="loginInputAreaBox">
+                    <Text text="Please use the Computer Id and Password." class="loginInputAreaText" />
+                    <!-- <Text text="For password recovery click" class="loginInputAreaText" />
+                    <Link text="here" press="PasswordRecovery" class="loginLink"/> -->
+                </HBox>
+              </VBox>
+            </form:content>
+          </form:SimpleForm>
+
+        </HBox>
+      </HBox>
+      <l:VerticalLayout class="sapUiContentPadding" id="oVerticalContent"
+        width="50%">
+        <l:content>
+        </l:content>
+      </l:VerticalLayout>
+    </content>
+  </Page>
+</mvc:View>

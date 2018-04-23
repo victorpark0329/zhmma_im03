@@ -1,0 +1,205 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:commons="sap.ui.commons" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+  <Page id="BudgetTransferCommons" showHeader="false" class="updateBudgetTransferCommons" enableScrolling="false">
+    <!-- Type Information -->
+    <form:SimpleForm id="BTTypeRequestDisplay" minWidth="1024" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnL="1" columnM="1" title="HEADER" class="updatedSimpleForm">
+      <form:content>
+        <Label text="Type" required="true" class="sapUiSmallMarginTop"/>
+        <ActionSelect id="IOTypeSelect" required="true">
+          <items>
+            <!--  change="BudgetTransferSelect" -->
+            <!-- <core:Item key="None" text="Select.."/>
+                <core:Item key="2" text="2.Supplement"/>
+                <core:Item key="3" text="3.Return"/> -->
+            <core:Item key="4" text="4.Transfer" />
+          </items>
+          <layoutData>
+            <l:GridData span="L2 M3 S2"/>
+          </layoutData>
+        </ActionSelect>
+        <!-- Date Field -->
+        <Input id="FISCAl" type="Text" required="true" placeholder="Year" value="" change="zhmmaim.util.Commons.PIDefaultValue">
+          <layoutData>
+            <l:GridData span="L1 M2 S2"/>
+          </layoutData>
+        </Input>
+        <ActionSelect id="MONTH" required="true" change="">
+          <items>
+            <core:Item key="None" text="Month"/>
+            <core:Item key="1" text="January"/>
+            <core:Item key="2" text="Februry"/>
+            <core:Item key="3" text="March"/>
+            <core:Item key="4" text="April"/>
+            <core:Item key="5" text="May"/>
+            <core:Item key="6" text="June"/>
+            <core:Item key="7" text="July"/>
+            <core:Item key="8" text="August"/>
+            <core:Item key="9" text="September"/>
+            <core:Item key="10" text="October"/>
+            <core:Item key="11" text="November"/>
+            <core:Item key="12" text="December"/>
+          </items>
+          <layoutData>
+            <l:GridData span="L2 M2 S2"/>
+          </layoutData>
+        </ActionSelect>
+        <!-- Reason Code -->
+        <Label text="Reason Code" required="true" class="sapUiSmallMarginTop"/>
+        <Input id="REASON" type="Text" value="" required="true" placeholder="ex)3.." maxSuggestionWidth="350px" showSuggestion="true" showValueHelp="true" suggestionRows="{/results}" change="zhmmaim.util.Commons.onDescription"
+liveChange="zhmmaim.util.Common+
+s.onCallPossible" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+          <suggestionColumns>
+            <Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+              <Label text="Code"/>
+            </Column>
+            <Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+              <Label text="Info"/>
+            </Column>
+          </suggestionColumns>
+          <suggestionRows>
+            <ColumnListItem>
+              <cells>
+                <Label text="{INPUT}"/>
+                <Label text="{TEXT}"/>
+              </cells>
+            </ColumnListItem>
+          </suggestionRows>
+          <layoutData>
+            <l:GridData span="L1 M2 S2"/>
+          </layoutData>
+        </Input>
+        <Input id="REASOND" type="Text" editable="false">
+          <layoutData>
+            <l:GridData span="L2 M2 S2"/>
+          </layoutData>
+        </Input>
+        <Label text="Description" required="true" class="sapUiSmallMarginTop"/>
+        <Input id="KTEXT" required="true" type="Text" value=""/>
+        <Label text="Purpose" required="true" class="sapUiSmallMarginTop"/>
+        <TextArea id="PURPO" row="3" cols="100" wrapping="Soft" required="true" value=""/>
+      </form:content>
+    </form:SimpleForm>
+    <!-- Sender Table Information -->
+    <Panel class="budgetTransferTitle">
+      <headerToolbar>
+        <Toolbar class="updatedToolBarHeaderTitle2">
+          <Title text="SENDER"/>
+          <Button id="oAddSender" icon="sap-icon://add" press="zhmmaim.util.Commons.addSenderRow"/>
+        </Toolbar>
+      </headerToolbar>
+      <content>
+        <form:SimpleForm class="mySimpleForm updatedItemBody">
+          <form:content>
+            <table:Table id="oSender" visibleRowCount="3" class="sapUiSmallMarginBottom" rows="{/}">
+              <table:columns>
+                <table:Column>
+                  <Text text="PI"/>
+                  <table:template>
+                    <commons:TextField id="SenderPI" value="{S_POSID}" editable="true" change="zhmmaim.util.Commons.PIDefaultValue"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="Description"/>
+                  <table:template>
+                    <commons:TextField id="SenderDesc" value="{S_POST1}"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="Budget"/>
+                  <table:template>
+                  <commons:TextField id="SenderBudget" value="{path:'S_B_WLGES', type:'sap.ui.model.type.Currency'}" editable="false"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="Cur.Balance"/>
+                  <table:template>
+                    <commons:TextField id="SenderBalance" value="{path:'S_C_WLGES', type:'sap.ui.model.type.Currency'}" editable="false"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="(Transfer(-))"/>
+                  <table:template>
+                    <commons:TextField id="SenderTrans" value="{S_T_WLGES}" liveChange="zhmmaim.util.Commons.onTRSum" editable="true" />
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="Ending Bal."/>
+                  <table:template>
+                    <commons:TextField id="SenderEnding" value="{path:'S_E_WLGES', type:'sap.ui.model.type.Currency'}" editable="false"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="CC"/>
+                  <table:template>
+                    <commons:TextField id="SenderCC" value="{S_VKOSTL}" editable="false"/>
+                  </table:template>
+                </table:Column>
+              </table:columns>
+            </table:Table>
+          </form:content>
+        </form:SimpleForm>
+      </content>
+    </Panel>
+    <!-- <core:Icon src="sap-icon://expand-group" class="size3"/> -->
+    <!-- Receiver Table Information -->
+    <Panel class="budgetTransferTitle">
+      <headerToolbar>
+        <Toolbar class="updatedToolBarHeaderTitle2">
+          <Title text="RECEIVER"/>
+          <Button id="oAddReceiver" icon="sap-icon://add" press="zhmmaim.util.Commons.addReceiverRow"/>
+        </Toolbar>
+      </headerToolbar>
+      <content>
+        <form:SimpleForm class="mySimpleForm updatedItemBody">
+          <form:content>
+            <table:Table id="oReceiver" visibleRowCount="3" class="sapUiSmallMarginBottom" rows="{/}">
+              <table:columns>
+                <table:Column>
+                  <Text text="PI"/>
+                  <table:template>
+                    <commons:TextField id="ReceiverPI" value="{R_POSID}" editable="true" change="zhmmaim.util.Commons.PIDefaultValue"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="Description"/>
+                  <table:template>
+                    <commons:TextField id="ReceiverDesc" value="{R_POST1}"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="Budget"/>
+                  <table:template>
+                    <commons:TextField id="ReceiverBudget" value="{path:'R_B_WLGES', type:'sap.ui.model.type.Currency'}" editable="false"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="Cur.Balance"/>
+                  <table:template>
+                    <commons:TextField id="ReceiverBalance" value="{path:'R_C_WLGES', type:'sap.ui.model.type.Currency'}" editable="false" />
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="(Transfer(+))"/>
+                  <table:template>
+                    <commons:TextField id="ReceiverTrans" value="{R_T_WLGES}" liveChange="zhmmaim.util.Commons.onTRSum" editable="true"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="Ending Bal."/>
+                  <table:template>
+                    <commons:TextField id="ReceiverEnding" value="{path:'R_E_WLGES', type:'sap.ui.model.type.Currency'}" editable="false"/>
+                  </table:template>
+                </table:Column>
+                <table:Column>
+                  <Text text="CC"/>
+                  <table:template>
+                    <commons:TextField id="ReceiverCC" value="{R_VKOSTL}" editable="false"/>
+                  </table:template>
+                </table:Column>
+              </table:columns>
+            </table:Table>
+          </form:content>
+        </form:SimpleForm>
+      </content>
+    </Panel>
+  </Page>
+</core:FragmentDefinition>

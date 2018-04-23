@@ -1,0 +1,91 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="oCooperationDialog" resizable="true">
+		<l:HorizontalLayout>
+			<ActionSelect id="CPTypeSelect" change="zhmmaim.util.Commons.onCooperationType" class="sapUiSmallMarginEnd">
+				<items>
+					<core:Item key="A" text="Name" />
+					<core:Item key="B" text="Department"/>
+				</items>
+			</ActionSelect>
+			<Input id="oCPsearch" type="Text" value=""
+					maxSuggestionWidth="700px"
+					showTableSuggestionValueHelp="false"
+					showSuggestion="true"
+					suggestionRows="{/results}"
+					liveChange="zhmmaim.util.Commons.onCallCPPossible">
+					<suggestionColumns>
+							<Column
+								hAlign="Begin"
+								popinDisplay="Inline"
+								demandPopin="true">
+								<Label id="Name" text="Name"/> 
+							</Column>
+							<Column 
+								hAlign="Begin"
+								popinDisplay="Inline"
+								demandPopin="true">
+								<Label id="Title" text="Title"/>
+							</Column>
+							<Column
+								hAlign="Begin"
+								popinDisplay="Inline"
+								demandPopin="true">
+								<Label id="DeptName" text="Dept Name"/>
+							</Column>
+							<Column
+								hAlign="Begin"
+								popinDisplay="Inline"
+								demandPopin="true">
+								<Label id="Telephone" text="Telephone"/>
+							</Column>
+					</suggestionColumns>
+					<suggestionRows>
+						<ColumnListItem>
+							<cells>
+								<Label text="{ENGLISH_NAME}"/>
+								<Label text="{DUTY_NAME}"/>
+								<Label text="{DEPT_NAME}"/>
+								<Label text="{TELEPHONE}"/>
+							</cells>
+						</ColumnListItem>
+					</suggestionRows>
+			</Input>
+			<Button icon="sap-icon://add" text="add Cooperation" class="sapUiSmallMarginBegin" press="zhmmaim.util.Commons.onAddCooperation"/>
+		</l:HorizontalLayout>
+		<Table id="oCPList" mode="Delete" delete="zhmmaim.util.Commons.CPhandleDelete" items="{/}" class="customDeleteTable">
+			<columns>
+				<Column>
+					<Text text="Name"/>
+				</Column>
+				<Column>
+					<Text text="Title"/>
+				</Column>
+				<Column>
+					<Text text="Dept Name"/>
+				</Column>
+				<Column>
+					<Text text="Telephone"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<Text text="{ENGLISH_NAME}"/>
+					<Text text="{DUTY_NAME}"/>
+					<Text text="{DEPT_NAME}"/>
+					<Text text="{TELEPHONE}"/>
+				</ColumnListItem>
+			</items>
+		</Table>
+		
+		<beginButton>
+			<Button text="Select" press="zhmmaim.util.Commons.handleSelectButton"/>
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="zhmmaim.util.Commons.handleCloseButton"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition> 

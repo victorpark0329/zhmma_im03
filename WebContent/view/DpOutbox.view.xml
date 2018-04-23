@@ -1,0 +1,49 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:table="sap.ui.table"
+		controllerName="zhmmaim.controller.DpOutbox" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Department Outbox">
+		<content>
+		<table:Table id="DPOutboxList" visibleRowCount="10" selectionBehavior="RowOnly"
+					navigationMode="Paginator" class="sapUiSmallMarginBottom" 
+					enableGrouping="true" rows="{/results}">
+		<table:toolbar>
+		<Toolbar>
+			<Title text="Department Outbox" level="H2"/>
+			<ToolbarSpacer/>
+		</Toolbar>
+		</table:toolbar>
+			<table:columns>
+				<table:Column sortProperty="DOC_TYPE" sorted="true" visible="true">
+					<Label text="Process"/>
+					<table:template>
+						<Label text="{DOC_TYPE}"/>
+					</table:template>
+				</table:Column>
+				<table:Column>
+					<Label text="Task"/>
+					<table:template>
+						<Label text="{TITLE}"/>
+					</table:template>
+				</table:Column>
+				<table:Column>
+					<Label text="Assignee"/>
+					<table:template>
+						<Label text="{ASSIGNEE}"/>
+					</table:template>
+				</table:Column>
+				<table:Column>
+					<Label text="Due Date"/>
+					<table:template>
+						<Label text="{DATE}"/>
+					</table:template>
+				</table:Column>
+				<table:Column>
+					<Label text="Delegated"/>
+					<table:template>
+						<Label text="{DELEGATED}"/>
+					</table:template>
+				</table:Column>
+			</table:columns>
+		</table:Table> 
+		</content>
+	</Page>
+</mvc:View>

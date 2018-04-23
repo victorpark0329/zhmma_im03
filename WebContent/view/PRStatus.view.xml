@@ -1,0 +1,283 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.ui.table" xmlns:commons="sap.ui.commons"
+	xmlns:m="sap.m" xmlns:l="sap.ui.layout" controllerName="zhmmaim.controller.PRStatus"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page title="PR Status" class="test01">
+		<l:HorizontalLayout class="sapUiMediumMarginTop sapUiMediumMarginBegin">
+			<m:DateRangeSelection
+				id="oBdStatusDR"
+				width="300px"
+				displayFormat="MM/dd/yyyy"
+				valueFormat="MM/dd/yyyy"
+				change="handleChange"
+			/>
+		</l:HorizontalLayout>
+		<Table
+			id="oPRTable"
+			noDataText="No Data"
+			selectionMode="Single"
+			rows="{/}" 
+			navigationMode="Paginator"
+			threshold="15"
+			visibleRowCount="15"
+			enableGrouping="true"
+			enableColumnFreeze="true"
+			showColumnReordering="true"
+			enableCellFilter= "true"
+			rowSelectionChange="showDetail"
+			filter=""
+			class="imPRStatusTable"
+			>
+			<toolbar>
+				<m:Toolbar>
+					<m:Title text="PR Status"></m:Title>
+					<m:Text text="(If you want to see detail, click the very left part of table.)" class="sapUiSmallMarginBottom"></m:Text>
+					<m:ToolbarSpacer/>
+					<m:SearchField
+						placeholder="Filter"
+						search="filterGlobally"
+						width="15rem"/>
+					<m:Button icon="sap-icon://download" press="toExportCSV"/>
+				 	<m:Button icon="sap-icon://action-settings" press="onPersoButtonPressed">
+						<m:customData>
+							<core:CustomData
+								key="multi"
+								value="true"/>
+							<core:CustomData
+								key="remember"
+								value="true"/>
+						</m:customData>
+					</m:Button>
+				</m:Toolbar>
+			</toolbar>
+			<columns>
+				<Column id="BGTDOC" width="7rem"
+					sortProperty="BGTDOC"
+					filterProperty="BGTDOC">
+					<m:Label text="Doc No." />
+					<template>
+						<commons:TextView text="{BGTDOC}"/>
+					</template>
+				</Column>
+				<Column id="KTEXT" width="15rem" sortProperty="KTEXT" visible="false">
+					<m:Label text="Description" />
+					<template>
+						<commons:TextView text="{KTEXT}"/>
+					</template>
+				</Column>
+				<Column id="RDATE" width="9rem"
+					sortProperty="RDATE"
+					filterProperty="RDATE">
+					<m:Label text="Reporting Date" />
+					<template>
+						<commons:TextView text="{path:'RDATE',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="PERNR" width="9rem"
+					sortProperty="PERNR"
+					filterProperty="PERNR">
+					<m:Label text="AR Applicant" />
+					<template>
+						<commons:TextView text="{PERNR}"/>
+					</template>
+				</Column>
+				<Column id="RTYPE" width="9rem"
+					sortProperty="RTYPE">
+					<m:Label text="Request Type" />
+					<template>
+						<commons:TextView text="{RTYPE}"/>
+					</template>
+				</Column>
+				<Column id="BTSTS" width="5rem"
+					sortProperty="BTSTS"
+					filterProperty="BTSTS">
+					<m:Label text="Status" />
+					<template>
+						<commons:TextView text="{BTSTS}"/>
+					</template>
+				</Column>
+				<Column id="BTSTSD" width="7rem"
+					sortProperty="BTSTSD"
+					filterProperty="BTSTSD">
+					<m:Label text="S.Description" />
+					<template>
+						<commons:TextView text="{BTSTSD}"/>
+					</template>
+				</Column>
+				<Column id="BGTSEQ" width="5rem" visible="false"
+					sortProperty="BGTSEQ">
+					<m:Label text="Doc Seq." />
+					<template>
+						<commons:TextView text="{BGTSEQ}"/>
+					</template>
+				</Column>
+				<Column id="AKOSTL" width="7rem" visible="false"
+					sortProperty="AKOSTL">
+					<m:Label text="Request CC" />
+					<template>
+						<commons:TextView text="{AKOSTL}"/>
+					</template>
+				</Column>
+				<Column id="VKOSTL" width="7rem" visible="false"
+					sortProperty="VKOSTL">
+					<m:Label text="Response CC" />
+					<template>
+						<commons:TextView text="{VKOSTL}"/>
+					</template>
+				</Column>
+				<Column id="WERKS" width="5rem" visible="false"
+					sortProperty="WERKS"
+					filterProperty="WERKS">
+					<m:Label text="Plant" />
+					<template>
+						<commons:TextView text="{WERKS}"/>
+					</template>
+				</Column>
+				<Column id="AUFNR" width="7rem" 
+					sortProperty="AUFNR"
+					filterProperty="AUFNR">
+					<m:Label text="Order Number" />
+					<template>
+						<commons:TextView text="{AUFNR}"/>
+					</template>
+				</Column>
+				<Column id="BANFN" width="7rem"
+					sortProperty="BANFN"
+					filterProperty="BANFN">
+					<m:Label text="PR Number" />
+					<template>
+						<commons:TextView text="{BANFN}"/>
+					</template>
+				</Column>
+				<Column id="EBELN" width="7rem" visible="false"
+					sortProperty="EBELN"
+					filterProperty="EBELN">
+					<m:Label text="PO Number" />
+					<template>
+						<commons:TextView text="{EBELN}"/>
+					</template>
+				</Column>
+				<Column id="LFDAT" width="7rem" visible="false"
+					sortProperty="LFDAT">
+					<m:Label text="Need Date" />
+					<template>
+						<commons:TextView text="{path:'LFDAT',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="LIFNR1" width="6rem" visible="false"
+					sortProperty="LIFNR1"
+					filterProperty="LIFNR1">
+					<m:Label text="Vender 1" />
+					<template>
+						<commons:TextView text="{LIFNR1}"/>
+					</template>
+				</Column>
+				<Column id="LIFNR2" width="6rem" visible="false"
+					sortProperty="LIFNR2"
+					filterProperty="LIFNR2">
+					<m:Label text="Vender 2" />
+					<template>
+						<commons:TextView text="{LIFNR2}"/>
+					</template>
+				</Column>
+				<Column id="LIFNR3" width="6rem" visible="false"
+					sortProperty="LIFNR3"
+					filterProperty="LIFNR3">
+					<m:Label text="Vender 3" />
+					<template>
+						<commons:TextView text="{LIFNR3}"/>
+					</template>
+				</Column>
+				<Column id="LIFNR4" width="6rem" visible="false"
+					sortProperty="LIFNR4"
+					filterProperty="LIFNR4">
+					<m:Label text="Vender 4" />
+					<template>
+						<commons:TextView text="{LIFNR4}"/>
+					</template>
+				</Column>
+				<Column id="MATNR" width="10rem" visible="true"
+					sortProperty="MATNR"
+					filterProperty="MATNR">
+					<m:Label text="Material Number" />
+					<template>
+						<commons:TextView text="{MATNR}"/>
+					</template>
+				</Column>
+				<Column id="MAKTX" width="12rem" visible="false"
+					sortProperty="MAKTX"
+					filterProperty="MAKTX">
+					<m:Label text="Material Description" />
+					<template>
+						<commons:TextView text="{MAKTX}"/>
+					</template>
+				</Column>
+				<Column id="PREIS" width="6rem" hAlign="Right" visible="false"
+					sortProperty="PREIS"
+					filterProperty="PREIS">
+					<m:Label text="Price" />
+					<template>
+						<commons:TextView textAlign="Right" text="{path:'PREIS',type:'sap.ui.model.type.Float'}"/>
+					</template>
+				</Column>
+				<Column id="MENGE" width="5rem" visible="false"
+					sortProperty="MENGE"> 
+					<m:Label text="Quantity" />
+					<template>
+						<commons:TextView text="{MENGE}"/>
+					</template>
+				</Column>
+				<Column id="MEINS" width="3rem" visible="false"
+					sortProperty="MEINS">
+					<m:Label text="Unit" />
+					<template>
+						<commons:TextView text="{MEINS}"/>
+					</template>
+				</Column>
+				<Column id="NETWR" width="7rem" hAlign="Right" visible="false"
+					sortProperty="NETWR">
+					<m:Label text="Net Order" />
+					<template>
+						<commons:TextView textAlign="Right" text="{path:'NETWR',type:'sap.ui.model.type.Float'}"/>
+					</template>
+				</Column>
+				<Column id="TAX" width="3rem" hAlign="Right" visible="false"
+					sortProperty="TAX">
+					<m:Label text="Tax" />
+					<template>
+						<commons:TextView textAlign="Right" text="{path:'TAX',type:'sap.ui.model.type.Float'}"/>
+					</template>
+				</Column>
+				<Column id="SHIPPING" width="6rem" hAlign="Right" visible="false"
+					sortProperty="SHIPPING">
+					<m:Label text="Shipping" />
+					<template>
+						<commons:TextView textAlign="Right" text="{path:'SHIPPING',type:'sap.ui.model.type.Float'}"/>
+					</template>
+				</Column>
+				<Column id="TOT" width="5rem" hAlign="Right"
+				sortProperty="TOT">
+					<m:Label text="Total"/>
+					<template>
+						<commons:TextView textAlign="Right" text="{path:'TOT',type:'sap.ui.model.type.Float'}"/>
+					</template>
+				</Column>
+			</columns>
+		</Table>
+	</m:Page>
+</mvc:View>

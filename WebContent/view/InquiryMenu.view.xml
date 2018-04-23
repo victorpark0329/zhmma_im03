@@ -1,0 +1,60 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+    controllerName="zhmmaim.controller.InquiryMenu" xmlns:html="http://www.w3.org/1999/xhtml">
+  <Page showNavButton="true" navButtonPress="onNavBack">
+    <!-- HMMA IM Menu List -->
+    <List includeItemSelection="true" type="Active" insert="true" mode="SingleSelectMaster" selectionChange="onMenuPress">
+        <!--<StandardListItem id="abpbudgetstatus" title="ABP Budget Status" type="Active"/>-->
+        
+				<StandardListItem
+                    id = "abpbudgetstatus"
+                    class="draggable_list"
+                    title="ABP Budget Status"
+                    type="Active"
+                    icon="sap-icon://business-objects-experience"
+                    iconInset="true"
+                    description="{type}"
+                    activeIcon="true">
+                </StandardListItem> 
+
+        
+        <!--Victor 10/25/2016-->
+        <!--<StandardListItem id="budgettransferstatus" title="Budget Transfer Status" type="Active"/>-->
+				<StandardListItem
+                    id = "budgettransferstatus"
+                    class="draggable_list"
+                    title="Budget Transfer Status"
+                    type="Active"
+                    icon="sap-icon://share-2"
+                    iconInset="true"
+                    description="{type}"
+                    activeIcon="true">
+                </StandardListItem> 
+        
+        <!--<StandardListItem id="piiostatus" title="PI/IO Status" type="Active"/>-->
+				<StandardListItem
+                    id = "piiostatus"
+                    class="draggable_list"
+                    title="PI/IO Status"
+                    type="Active"
+                    icon="sap-icon://order-status"
+                    iconInset="true"
+                    description="{type}"
+                    activeIcon="true">
+                </StandardListItem> 
+        
+        <!--<StandardListItem id="prstatus" title="PR Status" type="Active"/>-->
+        
+				<StandardListItem
+                    id = "prstatus"
+                    class="draggable_list"
+                    title="PR Status"
+                    type="Active"
+                    icon="sap-icon://customer-order-entry"
+                    iconInset="true"
+                    description="{type}"
+                    activeIcon="true">
+                </StandardListItem> 
+
+    </List>
+  </Page>
+</core:View>

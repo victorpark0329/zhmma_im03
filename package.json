@@ -1,0 +1,12 @@
+{
+  "name": "IM_RFA",
+  "version": "0.1.0",
+  "description": "Grunt tasks around SAPUI5",
+  "main": "index.html",
+  "author": "HAEA",
+  "license": "Apache License, Version 2.0",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-openui5": "^0.10.0"
+  }
+}

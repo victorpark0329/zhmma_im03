@@ -1,0 +1,192 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns:commons="sap.ui.commons" xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="CompleteIOCommons" showHeader="false" class="updateIOCompleteCommons" enableScrolling="false">
+		<!-- IO Information -->
+		<form:SimpleForm id="IODisplay" 
+						minWidth="1024"
+						layout = "ResponsiveGridLayout"
+						labelSpanL = "3"
+						labelSpanM = "3"
+						emptySpanL = "1"
+						emptySpanM = "1"
+						columnL = "1"
+						columnM = "1"
+						title="HEADER"
+						class="updatedSimpleForm">
+			<form:content>
+						<Label text="IO" required="true" class="sapUiSmallMarginTop"/>
+						<Input id="AUFNR" type="Text" required="true" placeholder="(1)" change="zhmmaim.util.Commons.IODefaultValue">
+						<layoutData>
+							<l:GridData span="L3 M3 S3"/>
+						</layoutData>
+						</Input>
+						<Input id="AUFNRD" type="Text" value="{/MESSAGE}" editable="false"/>
+						 
+						<Label text="Description" required="true" class="sapUiSmallMarginTop"/>
+						<Input id="KTEXT" type="Text" required="true" value="{/KTEXT}"/>
+						<Label text="Purpose" class="sapUiSmallMarginTop"/>
+						<TextArea id="PURPO" 
+									row="3"
+									cols="100"
+									wrapping="Soft"
+									liveChange="zhmmaim.util.Commons.oAutoExpand"
+									value="{/PURPO}"/>
+			</form:content>
+		</form:SimpleForm>
+		
+		<!-- IO-Schedule Information -->
+		<form:SimpleForm id="IOExpectScheduleDisplay" 
+						title="IO-SCHEDULE" class="updatedSimpleForm">
+			<form:content>
+			<core:Title text="Plan" />
+			<l:Grid defaultSpan="L2 M2 S2" class="sapUiSmallMarginTop">
+					<l:content>
+						<Label text="Approval" required="true"/>
+						<Label text="PR" required="true"/>
+						<Label text="PO" required="true"/>
+						<Label text="GR" required="true"/>
+						<Label text="Install" required="true"/>
+						<Label text="Finish" required="true"/>
+					</l:content>
+					<l:content>
+						<DatePicker id="USER5" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/USER5}"/>
+						<DatePicker id="USER7" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/USER7}"/>
+						<DatePicker id="PODATE" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/PODATE}"/>
+						<DatePicker id="GRDATE" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/GRDATE}"/>
+						<DatePicker id="INSDATE" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/INSDATE}"/>
+						<DatePicker id="USER8" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/USER8}"/>
+					</l:content>
+			</l:Grid>
+			</form:content>
+		</form:SimpleForm>  
+		<form:SimpleForm id="IOActualScheduleDisplay" class="updatedSimpleForm2">
+			<form:content>
+			<core:Title text="Actual"/>
+			<l:Grid defaultSpan="L2 M2 S2" class="sapUiSmallMarginTop">
+					<l:content>
+						<Label text="Approval" required="true" class="myRedColor"/>
+						<Label text="PR" required="true" class="myRedColor"/>
+						<Label text="PO" required="true" class="myRedColor"/>
+						<Label text="GR" required="true" class="myRedColor"/>
+						<Label text="Install" required="true" class="myRedColor"/>
+						<Label text="Finish" required="true" class="myRedColor"/>
+					</l:content>
+					<l:content>
+						<DatePicker id="A_APP_DATE" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/A_APP_DATE}"/>
+						<DatePicker id="A_PRDATE" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/A_PRDATE}"/>
+						<DatePicker id="A_PODATE" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/A_PODATE}"/>
+						<DatePicker id="A_GRDATE" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/A_GRDATE}"/>
+						<DatePicker id="A_INSDATE" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/A_INSDATE}"/>
+						<DatePicker id="A_FINISH" change="onDPchange" required="true" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" value="{/A_FINISH}"/>
+					</l:content>
+			</l:Grid>
+			</form:content>
+		</form:SimpleForm>				
+		
+		<!-- Effect Information -->
+		<form:SimpleForm id="IOEffectDisplay" 
+						layout = "ResponsiveGridLayout"
+						labelSpanL = "2"
+						labelSpanM = "2"
+						emptySpanL = "1"
+						emptySpanM = "1"
+						columnL = "1"
+						columnM = "1"
+						title="EFFECT"
+						class="updatedSimpleForm">
+		<form:content>
+			<Label text="Tangible" class="sapUiSmallMarginTop"/>
+				<TextArea id="EFFTA" row="3" cols="100" wrapping="Soft" liveChange="zhmmaim.util.Commons.oAutoExpand" value="{/EFFTA}"/>
+				<Label text="Intangible" class="sapUiSmallMarginTop"/>
+				<TextArea id="EFFIN" row="3" cols="100" wrapping="Soft" liveChange="zhmmaim.util.Commons.oAutoExpand" value="{/EFFIN}"/>
+				<Label text="Location" class="sapUiSmallMarginTop"/>
+				<TextArea id="TPLNR" row="1" cols="100" wrapping="Soft" liveChange="zhmmaim.util.Commons.oAutoExpand" value="{/TPLNR}"/>
+				<Label/>
+			<Label text="Revenue" class="sapUiSmallMarginTop"/>
+			<table:Table id="oIOPayTB" visibleRowCount="1" rows="{/}" showNoData="false">
+					<!-- <table:Column autoResizeable="true">
+						<Text text="Year"/>
+						<table:template>
+							<commons:TextField value="Revenue" />
+						</table:template>
+					</table:Column> -->
+					<table:Column resizable="false">
+						<Text id="GJAHR1" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT0" liveChange="onAverage"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR2" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT1" liveChange="onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR3" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT2" liveChange="onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR4" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT3" liveChange="onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR5" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT4" liveChange="onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR6" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT5" liveChange="onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR7" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT6" liveChange="onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR8" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT7" liveChange="onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR9" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT8" liveChange="onAverage" />
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR10" text="" />
+						<table:template>
+							<commons:TextField id="RTNAMT9" liveChange="onAverage" />
+						</table:template>
+					</table:Column>
+				</table:Table>
+				
+				<Label/>
+				<!-- <Text text="Even Revenue" class="sapUiSmallMarginTop">
+					<layoutData>
+						<l:GridData span="L2 M2 S2"/>
+					</layoutData>
+				</Text>
+				<Input id="EvenRev" type="Text" editable="false"/> -->
+				<Text text="Payback Period" class="sapUiSmallMarginTop" visible="false">
+					<layoutData>
+						<l:GridData span="L2 M2 S2"/>
+					</layoutData>				
+				</Text>
+				<Input id="ROI" type="Text" editable="false" visible="false"/>
+			</form:content>
+		</form:SimpleForm>	
+	</Page>
+</core:FragmentDefinition>

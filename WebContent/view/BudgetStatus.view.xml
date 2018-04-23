@@ -1,0 +1,303 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.ui.table" xmlns:commons="sap.ui.commons"
+	xmlns:m="sap.m" xmlns:l="sap.ui.layout" controllerName="zhmmaim.controller.BudgetStatus"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<m:Page title="ABP Budget Status" class="test01">
+		<l:HorizontalLayout class="sapUiMediumMarginTop sapUiMediumMarginBegin">
+			<m:Input id="FISCAL" type="Text" required="true" placeholder="Project plan year" value="" change="handleChange">
+				<m:layoutData>
+					<l:GridData span="L1 M1 S1"/>
+				</m:layoutData>
+			</m:Input>
+		</l:HorizontalLayout>
+		
+		<Table
+			id="oABPTable"
+			selectionMode="Single"
+			rows="{/}" 
+			navigationMode="Paginator"
+			threshold="15"
+			visibleRowCount="15"
+			enableGrouping="true"
+			enableColumnFreeze="true"
+			showColumnReordering="true"
+			enableCellFilter= "true"
+			rowSelectionChange="zhmmaim.util.Commons.toABPDetail"
+			noDataText="No Data"
+			filter=""
+			class="imPRStatusTable"
+			>
+			<toolbar>
+				<m:Toolbar>
+					<m:Title text="ABP Budget Status"></m:Title>
+					<m:Text text="(If you want to see detail, click the very left part of table.)" class="sapUiSmallMarginBottom"></m:Text>
+					<m:ToolbarSpacer/>
+					<m:SearchField
+						placeholder="Filter"
+						search="filterGlobally"
+						width="15rem"/>
+					<m:Button icon="sap-icon://download" press="toExportCSV"/>
+				 	<m:Button icon="sap-icon://action-settings" press="onPersoButtonPressed">
+						<m:customData>
+							<core:CustomData
+								key="multi"
+								value="true"/>
+							<core:CustomData
+								key="remember"
+								value="true"/>
+						</m:customData>
+					</m:Button>
+				</m:Toolbar>
+			</toolbar>
+			<columns>
+				<Column id="BGTDOC" width="6rem" 
+					sortProperty="BGTDOC"
+					filterProperty="BGTDOC">
+					<m:Label text="Doc No." />
+					<template>
+						<commons:TextView text="{BGTDOC}"/>
+					</template>
+				</Column>
+				<Column id="RDATE" width="8rem"
+					sortProperty="RDATE"
+					filterProperty="RDATE">
+					<m:Label text="Reporting Date" />
+					<template>
+						<commons:TextView text="{path:'RDATE',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="PERNR" width="7rem"
+					sortProperty="PERNR"
+					filterProperty="PERNR">
+					<m:Label text="AR Applicant" />
+					<template>
+						<commons:TextView text="{PERNR}"/>
+					</template>
+				</Column>
+				<Column id="RTYPE" width="9rem" visible="false"
+					sortProperty="RTYPE">
+					<m:Label text="Request Type" />
+					<template>
+						<commons:TextView text="{RTYPE}"/>
+					</template>
+				</Column>
+				<Column id="BTSTS" width="5rem" 
+					sortProperty="BTSTS"
+					filterProperty="BTSTS">
+					<m:Label text="Status" />
+					<template>
+						<commons:TextView text="{BTSTS}"/>
+					</template>
+				</Column>
+				<Column id="BTSTSD" width="7rem"
+					sortProperty="BTSTSD"
+					filterProperty="BTSTSD">
+					<m:Label text="S.Description" />
+					<template>
+						<commons:TextView text="{BTSTSD}"/>
+					</template>
+				</Column>
+				<Column id="BGTSEQ" width="5rem" visible="false"
+					sortProperty="BGTSEQ">
+					<m:Label text="Doc Seq." />
+					<template>
+						<commons:TextView text="{BGTSEQ}"/>
+					</template>
+				</Column>
+				<Column id="ZPROJ" 
+					sortProperty="ZPROJ"
+					filterProperty="ZPROJ" width="7rem" visible="false">
+					<m:Label text="Project Code"/>
+					<template>
+						<commons:TextView text="{ZPROJ}"/>
+					</template>
+				</Column>
+				<Column id="AKOSTL" width="7rem" visible="false"
+					sortProperty="AKOSTL">
+					<m:Label text="Request CC" />
+					<template>
+						<commons:TextView text="{AKOSTL}"/>
+					</template>
+				</Column>
+				<Column id="VKOSTL" width="7rem" visible="false"
+					sortProperty="VKOSTL"
+					filterProperty="VKOSTL">
+					<m:Label text="Response CC" />
+					<template>
+						<commons:TextView text="{VKOSTL}"/>
+					</template>
+				</Column>
+				<Column id="WERKS" width="4rem" visible="false"
+					sortProperty="WERKS"
+					filterProperty="WERKS">
+					<m:Label text="Plant" />
+					<template>
+						<commons:TextView text="{WERKS}"/>
+					</template>
+				</Column>
+				<Column id="PRIORI" width="4rem" visible="false"
+					sortProperty="PRIORI"
+					filterProperty="PRIORI">
+					<m:Label text="Priority" />
+					<template>
+						<commons:TextView text="{PRIORI}"/>
+					</template>
+				</Column>
+				<Column id="USR02" width="5rem" visible="false"
+					sortProperty="USR02">
+					<m:Label text="Category" />
+					<template>
+						<commons:TextView text="{USR02}"/>
+					</template>
+				</Column>
+				<Column id="USR03" width="7rem" visible="false"
+					sortProperty="USR03">
+					<m:Label text="Invest Class" />
+					<template>
+						<commons:TextView text="{USR03}"/>
+					</template>
+				</Column>
+				<Column id="USR00" width="7rem" visible="false"
+					sortProperty="USR00">
+					<m:Label text="Project Dates" />
+					<template>
+						<commons:TextView text="{path:'USR00',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="SIZECL"  width="5rem" visible="false"
+					sortProperty="SIZECL">
+					<m:Label text="Scale"/>
+					<template>
+						<commons:TextView text="{SIZECL}"/>
+					</template>
+				</Column>
+				<Column id="POSNR"  width="7rem"
+					sortProperty="POSNR">
+					<m:Label text="AR Number" />
+					<template>
+						<commons:TextView text="{POSNR}"/>
+					</template>
+				</Column>
+				<Column id="AUFNR"  width="7rem" visible="false"
+					sortProperty="AUFNR">
+					<m:Label text="Order Number" />
+					<template>
+						<commons:TextView text="{AUFNR}"/>
+					</template>
+				</Column>
+				<Column id="GDATU"  width="7rem" 
+					sortProperty="GDATU">
+					<m:Label text="Approval Date" />
+					<template>
+						<commons:TextView text="{path:'GDATU',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="WDATU"  width="7rem" visible="false"
+					sortProperty="WDATU">
+					<m:Label text="PR Date" />
+					<template>
+						<commons:TextView text="{path:'WDATU',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="PODATE"  width="7rem" visible="false"
+					sortProperty="PODATE">
+					<m:Label text="PO Date" />
+					<template>
+						<commons:TextView text="{path:'PODATE',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="USR01"  width="7rem" visible="false"
+					sortProperty="USR01">
+					<m:Label text="GR Date" />
+					<template>
+						<commons:TextView text="{path:'USR01',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="USR08"  width="7rem" visible="false"
+					sortProperty="USR08">
+					<m:Label text="Install Date" />
+					<template>
+						<commons:TextView text="{path:'USR08',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="USR09"  width="7rem" visible="false"
+					sortProperty="USR09">
+					<m:Label text="Finish Date" />
+					<template>
+						<commons:TextView text="{path:'USR09',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'MMddyyyy'
+													}
+												}
+											}"/>
+					</template>
+				</Column>
+				<Column id="TOT" width="5rem" hAlign="Right"
+					sortProperty="TOT">
+					<m:Label text="Total" />
+					<template>
+						<commons:TextView textAlign="Right" text="{path:'TOTA',type:'sap.ui.model.type.Float'}"/>
+					</template>
+				</Column>
+			</columns>
+		</Table>
+	</m:Page>
+</mvc:View>

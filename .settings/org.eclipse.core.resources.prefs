@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//WebContent/controller/BudgetPlanning.controller.js=UTF-8
+encoding//WebContent/controller/BudgetStatus.controller.js=UTF-8
+encoding//WebContent/controller/BudgetTransfer.controller.js=UTF-8
+encoding//WebContent/controller/BudgetTransferStatus.controller.js=UTF-8
+encoding//WebContent/controller/CompleteIO.controller.js=UTF-8
+encoding//WebContent/controller/CreatePR.controller.js=UTF-8
+encoding//WebContent/controller/IOCreateRelease.controller.js=UTF-8
+encoding//WebContent/controller/PIIOStatus.controller.js=UTF-8
+encoding//WebContent/controller/PRStatus.controller.js=UTF-8
+encoding//WebContent/controller/PvInbox.controller.js=UTF-8
+encoding//WebContent/controller/login.controller.js=UTF-8
+encoding//WebContent/resources/js/html2canvas.min.js=UTF-8
+encoding//WebContent/resources/js/jspdf.min.js=UTF-8
+encoding//WebContent/util/Commons.js=UTF-8
+encoding/<project>=UTF-8

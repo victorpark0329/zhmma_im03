@@ -1,0 +1,417 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:commons="sap.ui.commons" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="IOCreationCommons" showHeader="false" class="updateIOCreationCommons" enableScrolling="false">
+		<!-- Type Information -->
+		<form:SimpleForm id="IOTypeDisplay" minWidth="1024" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnL="1" columnM="1" title="HEADER" class="updatedSimpleForm">
+			<form:content>
+						<Label text="Type" class="sapUiSmallMarginTop"/>
+						<ActionSelect id="IOTypeSelect">
+							<items>
+								<core:Item key="A" text="With PR"/>
+								<core:Item key="B" text="Without PR"/>
+							</items>
+						<layoutData>
+							<l:GridData span="L2 M4 S6"/>
+						</layoutData>
+						</ActionSelect>
+						<!-- Already Approval -->
+						<commons:CheckBox id="APPROVED" text="Already Approved" class="sapUiSmallMarginTop" change="onAlreadyAP"/>
+						
+						<Label text="Position ID" required="true" class="sapUiSmallMarginTop"/>
+						<Input id="Year"
+							 type="Number" 
+							 required="true" 
+							 placeholder="Year(1)" >
+							
+							<!--change="POSIDDefaultValue"-->
+						<!--<Input id="Year" type="Number" required="true" placeholder="Year(1)" >-->
+<!--tooltip="*To input PI number 1. Input  fiscal year and keyin. Then you can choose 2. Directly input PI number and fiscal year."							-->
+
+						<layoutData>
+							<l:GridData span="L1 M2 S2"/>
+						</layoutData>
+						</Input>
+						<!--<Input id="POSID" type="Text" required="true" placeholder="Position ID(1)" change="POSNRDefaultValue" tooltip="*To input PI number 1. Input  fiscal year and keyin. Then you can choose 2. Directly input PI number and fiscal year.">-->
+
+						<Input id="POSID" 
+						       type="Text" 
+						       required="true" 
+						       placeholder="Position ID(1)" 
+							   change="POSNRDefaultValue"
+						       showValueHelp="true"
+						       valueHelpRequest="POSIDDefaultValue">
+
+						       <!--tooltip="*To input PI number 1. Input  fiscal year and keyin. Then you can choose 2. Directly input PI number and fiscal year."-->
+						       
+						<layoutData>
+							<l:GridData span="L3 M4 S5"/>
+						</layoutData>
+						</Input>
+						<Input id="POSIDD" type="Text" value="{/MESSAGE}" editable="false"/>
+						
+						<Label text="Est. Cost" required="true" class="sapUiSmallMarginTop"/>
+						<!--  liveChange="zhmmaim.util.Commons.onlyInputNumber" -->
+						<Input id="USER4" type="Text" required="true" placeholder="(2)" editable="true" change="zhmmaim.util.Commons.onCheckAmount">
+						<layoutData>
+							<l:GridData span="L2 M4 S5"/>
+						</layoutData>
+						</Input>
+						<Select>
+							<items>
+								<core:Item key="USD" text="USD"/>
+							</items>
+						<layoutData>
+							<l:GridData span="L1 M2 S2"/>
+						</layoutData>
+						</Select>
+						<Text id="C_BalanceD" type="Text" text="Available Balance:" visible="true" class="sapUiSmallMarginTop"/>
+						<Text id="C_Balance" type="Text" text="{/BAL_AMT}" editable="false" visible="true" class="sapUiSmallMarginTop"/>
+						
+						<Label text="Description" required="true" class="sapUiSmallMarginTop"/>
+						<Input id="KTEXT" required="true" type="Text" value="{/KTEXT}" liveChange="handleLiveChange"/>
+						<Label text="Purpose" required="true" class="sapUiSmallMarginTop"/>
+						<TextArea id="PURPO" row="3" cols="100" wrapping="Soft" liveChange="zhmmaim.util.Commons.oAutoExpand" required="true" value="{/PURPO}"/>
+			</form:content>
+		</form:SimpleForm>
+
+		<!-- IO-Basic Information -->
+		<form:SimpleForm id="IOBasicDisplay" minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnsL="1" columnsM="1" title="IO-Basic" class="updatedSimpleForm">
+			<form:content>
+				<Label text="Plant" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="WERKS" type="Text" value="" required="true" maxSuggestionWidth="350px" showSuggestion="true" showValueHelp="true" suggestionRows="{/results}" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+						<suggestionColumns>
+								<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+									<Label text="Code"/>
+								</Column>
+								<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+									<Label text="Info"/>
+								</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{INPUT}"/>
+									<Label text="{TEXT}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+				<layoutData>
+					<l:GridData span="L1 M3 S3"/>
+				</layoutData>
+				</Input>
+				<Input id="WERKSD" type="Text" value="{/WERKSD}" editable="false"/>
+				
+				<Label text="CC.Reqst" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="KOSTV" type="Text" value="" required="true" maxSuggestionWidth="350px" showSuggestion="true" showValueHelp="true" suggestionRows="{/results}" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+						<suggestionColumns>
+								<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+									<Label text="Code"/>
+								</Column>
+								<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+									<Label text="Info"/>
+								</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{INPUT}"/>
+									<Label text="{TEXT}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					<layoutData>
+						<l:GridData span="L1 M3 S3"/>
+					</layoutData>
+				</Input>
+				<Input id="KOSTVD" type="Text" value="{/KOSTVD}" editable="false"/>
+				
+				<Label text="CC.Resp" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="AKSTL" type="Text" value="" required="true" maxSuggestionWidth="350px" showSuggestion="true" showValueHelp="true" suggestionRows="{/results}" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+						<suggestionColumns>
+								<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+									<Label text="Code"/>
+								</Column>
+								<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+									<Label text="Info"/>
+								</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{INPUT}"/>
+									<Label text="{TEXT}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					<layoutData>
+						<l:GridData span="L1 M3 S3"/>
+					</layoutData>
+				</Input>
+				<Input id="AKSTLD" type="Text" value="{/AKSTLD}" editable="false"/>
+				
+				<Label text="Applicant" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="USER0" type="Text" required="true" value="{/USER0}">
+				<layoutData>
+					<l:GridData span="L2 M3 S3"/>
+				</layoutData>
+				</Input>
+				
+				<Label text="Applicant Telephone" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="USER1" type="Tel" required="true" value="{/USER1}">
+				<layoutData>
+					<l:GridData span="L2 M3 S3"/>
+				</layoutData>
+				</Input>
+				
+				<Label text="Person.Responsible" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="USER2" type="Text" required="true" value="{/USER2}">
+				<layoutData>
+					<l:GridData span="L2 M3 S3"/>
+				</layoutData>
+				</Input>
+			</form:content>
+		</form:SimpleForm>
+		
+		<!-- IO-Schedule Information -->
+		<form:SimpleForm id="IOScheduleDisplay" title="IO-Schedule" class="updatedSimpleForm updatedSimpleFormFixWidth90">
+			<form:content>
+			<l:Grid defaultSpan="L2 M2 S2" class="sapUiSmallMarginTop">
+					<l:content>
+						<Label text="Approval" required="true"/>
+						<Label text="PR" required="true"/>
+						<Label text="PO"/>
+						<Label text="GR"/>
+						<Label text="Install"/>
+						<Label text="Finish" required="true"/>
+					</l:content>
+					<l:content>
+<!-- 					<commons:DatePicker id="USER5" value="{/USER5}" string="yyyyMMdd" locale="en-US"/>
+						<commons:DatePicker id="USER7" value="{/USER7}" string="yyyyMMdd" locale="en-US"/>
+						<commons:DatePicker id="PODATE" value="{/PODATE}" string="yyyyMMdd" locale="en-US"/>
+						<commons:DatePicker id="GRDATE" value="{/GRDATE}" string="yyyyMMdd" locale="en-US"/>
+						<commons:DatePicker id="INSDATE" value="{/INSDATE}" string="yyyyMMdd" locale="en-US"/>
+						<commons:DatePicker id="USER8" value="{/USER8}" string="yyyyMMdd" locale="en-US"/> -->
+						
+						<DatePicker id="USER5" value="{/USER5}" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="USER7" value="{/USER7}" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="PODATE" value="{/PODATE}" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="GRDATE" value="{/GRDATE}" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="INSDATE" value="{/INSDATE}" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+						<DatePicker id="USER8" value="{/USER8}" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange"/>
+					</l:content>
+			</l:Grid>
+			</form:content>
+		</form:SimpleForm>		
+		
+		<!-- IO-IM Information -->
+		<form:SimpleForm id="IOIMDisplay" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnL="1" columnM="1" title="IO-IM" class="updatedSimpleForm">
+			<form:content>
+						<Label text="IM.Profile" required="true" class="sapUiSmallMarginTop"/>
+						<Input id="IVPRO" type="Text" value="" required="true" maxSuggestionWidth="350px" showSuggestion="true" showValueHelp="true" suggestionRows="{/results}" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+								<suggestionColumns>
+										<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+											<Label text="Code"/>
+										</Column>
+										<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+											<Label text="Info"/>
+										</Column>
+								</suggestionColumns>
+								<suggestionRows>
+									<ColumnListItem>
+										<cells>
+											<Label text="{INPUT}"/>
+											<Label text="{TEXT}"/>
+										</cells>
+									</ColumnListItem>
+								</suggestionRows>
+						<layoutData>
+							<l:GridData span="L1 M3 S3"/>
+						</layoutData>
+						</Input>
+						<Input id="IVPROD" type="Text" value="{/IVPROD}" editable="false"/>
+						
+						<Label text="IM.Reason" required="true" class="sapUiSmallMarginTop"/>
+						<Input id="IZWEK" type="Text" value="" required="true" maxSuggestionWidth="350px" showSuggestion="true" showValueHelp="true" suggestionRows="{/results}" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+								<suggestionColumns>
+										<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+											<Label text="Code"/>
+										</Column>
+										<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+											<Label text="Info"/>
+										</Column>
+								</suggestionColumns>
+								<suggestionRows>
+									<ColumnListItem>
+										<cells>
+											<Label text="{INPUT}"/>
+											<Label text="{TEXT}"/>
+										</cells>
+									</ColumnListItem>
+								</suggestionRows>
+						<layoutData>
+							<l:GridData span="L1 M3 S3"/>
+						</layoutData>
+						</Input>
+						<Input id="IZWEKD" type="Text" value="{/IZWEKD}" editable="false"/>
+						
+						<Label text="Asset Class" required="true" class="sapUiSmallMarginTop"/>
+						<!-- <Input id="ANLKL" type="Text" value="{/ANLKL}" required="true"> -->
+						<Input id="ANLKL" type="Text" value="" required="true" maxSuggestionWidth="350px" showSuggestion="true" showValueHelp="true" suggestionRows="{/results}" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+									<suggestionColumns>
+											<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+												<Label text="Code"/>
+											</Column>
+											<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+												<Label text="Info"/>
+											</Column>
+									</suggestionColumns>
+									<suggestionRows>
+										<ColumnListItem>
+											<cells>
+												<Label text="{INPUT}"/>
+												<Label text="{TEXT}"/>
+											</cells>
+										</ColumnListItem>
+									</suggestionRows>
+							<layoutData>
+								<l:GridData span="L1 M2 S3"/>
+							</layoutData>
+						</Input>
+						<Input id="ANLKLD" type="Text" value="{/ANLKLD}" editable="false"/>
+						
+						<Label text="Capital.Date" class="sapUiSmallMarginTop"/>
+						<DatePicker id="AKTIV" displayFormat="MM/dd/yyyy" valueFormat="yyyyMMdd" change="onDPchange">
+						<layoutData>
+							<l:GridData span="L2 M3 S3"/>
+						</layoutData>
+						</DatePicker>
+						<Label text="Asset Name" class="sapUiSmallMarginTop"/>
+						<Input id="TXT50" type="Text" value="">
+						<layoutData>
+							<l:GridData span="L4 M4 S4"/>
+						</layoutData>
+						</Input>
+						
+						<Label text="Modification Asset" class="sapUiSmallMarginTop"/>
+						<Switch id="ASSET_MOD" type="Default" state="false" class="sapUiSmallMarginBegin">
+							<layoutData>
+								<l:GridData span="L2 M2 S2"/>
+							</layoutData>
+						</Switch>
+						
+						<Text id="oExistAsset_LABEL" text="Existing Asset:" class="sapUiSmallMarginTop">
+							<layoutData>
+								<l:GridData span="L2 M2 S2"/>
+							</layoutData>
+						</Text>
+						<MultiInput id="oExistAssestToken" placeholder="Input Asset.." showValueHelp="false">
+							<layoutData>
+								<l:GridData span="L3 M3 S3"/>
+							</layoutData>
+						</MultiInput>
+						<Label text="Disposal of existing asset" class="sapUiSmallMarginTop"/>
+						<RadioButtonGroup id="ASSET_DIS" columns="4" selectedIndex="1">
+							<buttons>
+								<RadioButton text="Yes"/>
+								<RadioButton text="No"/>
+							</buttons>
+						</RadioButtonGroup>
+			</form:content>
+		</form:SimpleForm>							  	
+		
+		<!-- Effect Information -->
+		<form:SimpleForm id="IOEffectDisplay" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnL="1" columnM="1" title="EFFECT" class="updatedSimpleForm">
+			<form:content>
+			<Label text="Tangible" class="sapUiSmallMarginTop"/>
+				<TextArea id="EFFTA" row="3" cols="100" wrapping="Soft" liveChange="zhmmaim.util.Commons.oAutoExpand" value="{/EFFTA}"/>
+				<Label text="Intangible" class="sapUiSmallMarginTop"/>
+				<TextArea id="EFFIN" row="3" cols="100" wrapping="Soft" liveChange="zhmmaim.util.Commons.oAutoExpand" value="{/EFFIN}"/>
+				<Label text="Location" class="sapUiSmallMarginTop"/>
+				<TextArea id="TPLNR" row="3" cols="100" wrapping="Soft" liveChange="zhmmaim.util.Commons.oAutoExpand" value="{/TPLNR}"/>
+				<Label/>
+			<!-- Payback Period -->
+			<Label text="Revenue" class="sapUiSmallMarginTop"/>
+			<table:Table id="oIOPayTB" visibleRowCount="1" rows="{/}">
+<!-- 					<table:Column autoResizeable="true">
+						<Text text="Year"/>
+						<table:template>
+							<commons:TextField value="Revenue" />
+						</table:template>
+					</table:Column>
+ -->					<table:Column resizable="false">
+						<Text id="GJAHR1" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT0" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR2" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT1" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR3" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT2" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR4" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT3" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR5" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT4" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR6" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT5" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR7" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT6" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR8" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT7" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR9" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT8" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+					<table:Column resizable="false">
+						<Text id="GJAHR10" text=""/>
+						<table:template>
+							<commons:TextField id="RTNAMT9" liveChange="onAverage" textAlign="Left"/>
+						</table:template>
+					</table:Column>
+				</table:Table>
+				<Label/>
+				<!-- <Text text="Even Revenue" class="sapUiSmallMarginTop" >
+				<layoutData>
+					<l:GridData span="L2 M2 S2"/>
+				</layoutData>
+				</Text>
+				<Input id="EvenRev" type="Text" editable="false" /> -->
+				<Text text="Payback Period" class="sapUiSmallMarginTop">
+				<layoutData>
+					<l:GridData span="L2 M2 S2"/>
+				</layoutData>
+				</Text>
+				<Input id="ROI" type="Text" editable="false"/>			
+			</form:content>
+			</form:SimpleForm>	
+	</Page>
+</core:FragmentDefinition>

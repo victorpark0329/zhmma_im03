@@ -1,0 +1,109 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:s="sap.suite.ui.commons"
+		xmlns:form = "sap.ui.layout.form" xmlns:commons="sap.ui.commons" xmlns:table="sap.ui.table" xmlns:unified="sap.ui.unified" controllerName="zhmmaim.controller.IOCreateRelease" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="IO Creation" class="test04 sapUiIOCreation">
+		<IconTabBar class="sapUiResponsiveContentPadding" expanded="false">
+				<items>
+					<IconTabFilter id="oWFTab" text="WorkFlow" icon="sap-icon://manager">
+						<commons:Button text="Approval Path" icon="sap-icon://search" press="zhmmaim.util.Commons.onSelectWorkFlow"/>
+						<commons:Button text="Cooperation Path" icon="sap-icon://search" press="zhmmaim.util.Commons.onSelectCooperation"/>
+						<Table id="oIOCreateWF" columns="{/0/}" showNoData="false" class="tblApprovalLine">
+							<infoToolbar>
+								<Toolbar>
+									<Text text="Approval Line" level="H5"/>
+								</Toolbar>
+							</infoToolbar>
+							<columns> 
+							<Column>
+									<Text text="{DUTY_NAME}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem cells="{/0/}">
+									<Text text="{ENGLISH_NAME}"/>
+								</ColumnListItem>
+								<ColumnListItem cells="{/0/}"  visible="false" >
+									<Text text="{USER_ID}"/>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<Table id="oIOCreateCP" columns="{/}" showNoData="false" 
+								class="tblCooperationLine">
+							<infoToolbar>
+								<Toolbar>
+									<Text text="Cooperation Line" level="H5"/>
+								</Toolbar>
+							</infoToolbar>
+							<columns>
+								<Column>
+									<Text text="{DUTY_NAME}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem cells="{/}">
+									<Text text="{ENGLISH_NAME}"/>
+								</ColumnListItem>
+								<ColumnListItem cells="{/}"  visible="false" >
+									<Text text="{USER_ID}"/>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<Text id="oApprovalDes" text="Before submit, please click both approval and cooperation path for system to see Power of Delegation rule." class="sapUiSmallMarginBegin"/>
+					</IconTabFilter>
+					<IconTabFilter text="Attachments" icon="sap-icon://attachment">
+						<UploadCollection
+								id="oUploadCollection"
+								noDataText="No Data"
+								maximumFilenameLength="500"
+								maximumFileSize="20"
+								multiple="true"
+								sameFilenameAllowed="true"
+								instantUpload="false"
+								showSeparators="All"
+								change="onChange"
+								fileDeleted="onFileDeleted"
+								filenameLengthExceed="onFilenameLengthExceed"
+								fileSizeExceed="onFileSizeExceed"
+								typeMissmatch="onTypeMissmatch"
+								uploadComplete="onUploadComplete"
+								beforeUploadStarts="onBeforeUploadStarts"
+								class="cAttachmentForm">
+							</UploadCollection>
+					</IconTabFilter>
+					<IconTabFilter text="Summary" icon="sap-icon://image-viewer">
+						<!-- Attach Information -->
+						<form:SimpleForm id="IOImageDisplay">
+							<form:content>
+								<unified:FileUploader
+									id="oImageUploader"
+									name="myFileUpload"
+									width="400px"
+									tooltip="jpg,bmp,gif,tif,png file only"
+									uploadComplete="handleUploadComplete"
+									change="handleImageChange"
+									typeMissmatch="zhmmaim.util.Commons.handleTypeMissmatch"
+									style="Emphasized"
+									fileType="jpg,bmp,gif,tif,png"
+									placeholder="Choose a Image for Upload..."/>
+							</form:content>
+						</form:SimpleForm>
+						<Image
+							id="oImage"
+							densityAware="false"
+							width="1000px" >
+						</Image>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		
+	  	<!-- Call the IOCreationCommons.fragment.xml -->
+		<core:Fragment fragmentName="zhmmaim.fragment.IOCreationCommons" type="XML"/>
+		
+		<footer>
+			<Bar>
+				<contentRight>
+					<ToggleButton type="Emphasized" text="SUBMIT" press="onSubmitDialog"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

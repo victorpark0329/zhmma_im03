@@ -1,0 +1,19 @@
+<mvc:View
+	controllerName="zhmmaim.controller.dashboard"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:commons="sap.ui.commons"
+	xmlns="sap.m">
+	<Page
+		class="sapUiFioriObjectPage sapUiDashboard"
+		title="DashBoard">
+		<TileContainer id="container">
+        <!-- <Input id="dummyTextbox" editable="true" type="Text" value="{dummyTextModel>/dummyTextValue}"/> -->
+        <StandardTile id="IMinbox" icon="sap-icon://inbox" title="Inbox" press="goIMMenu"/>
+		<!-- <StandardTile id="IMoutbox" icon="sap-icon://outbox" title="Outbox" info="Investment Private OUTBOX" press="goIMMenu"/>	
+		<StandardTile id="IMDpoutbox" icon="sap-icon://email" title="Dept.Outbox" info="Investment Department OUTBOX" press="goIMMenu"/>	 -->
+		<StandardTile id="IMcreate" icon="sap-icon://create" title="Create" info="ABP,IO,PR,Compeleted IO,Budget Transfer" press="goIMMenu"/>
+		<StandardTile id="IMinquiry" icon="sap-icon://order-status" title="Inquiry" info="IO,PR,Budget" press="goIMMenu"/>
+	</TileContainer>
+	</Page>
+</mvc:View>

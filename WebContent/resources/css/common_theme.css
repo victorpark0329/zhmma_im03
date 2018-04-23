@@ -1,0 +1,378 @@
+@charset "utf-8";
+ .sapUiUfdShellBrand {
+    background: #434343
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #fff;
+}
+.loginLink {
+    margin-left: 5px;
+    font-weight: bold
+}
+/* login */
+
+.sapUiLogin .sapMShellBrandingBar {
+    background-color: #585858 !important;
+}
+.sapUiLogin .sapMShellGlobalOuterBackground {
+    background-image: none;
+    background-color: #585858
+}
+.sapUiLogin .sapMPageHeader::before {
+    background-color: #383737;
+    border-top: 0.25rem solid #383737
+}
+.sapUiLogin {
+    background: url(../../resources/images/bg-login.jpg) no-repeat;
+    background-size: cover
+}
+.sapUiLogin .loginContentsBox {
+    margin: 18% 1% 1% 1%;
+    border-radius: 10px;
+    background: url(../../resources/images/logo_hyundai.png) no-repeat 10% 50%;
+    background-color: rgba(0, 0, 0, 0.5) !important
+}
+.sapUiLogin .loginContentsLogo .sapMFlexItem {
+    width: 100%;
+    text-align: center
+}
+.sapUiLogin .loginInputArea .sapMFlexItem {
+    width: 100%
+}
+.sapUiLogin .loginInputText .sapMFlexItem {
+    width: 345px
+}
+.sapUiLogin .loginInputAreaBox .sapMFlexItem {
+    width: auto
+}
+.sapUiLogin .loginInputArea .loginInputAreaText {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    font-weight: normal;
+    margin-left: 30px;
+}
+.sapUiLogin .sapMInputBase.sapUiId {
+    background: url(../../resources/images/ico_id.png) no-repeat 2px 4px transparent
+}
+.sapUiLogin .sapMInputBase.sapUiPw {
+    background: url(../../resources/images/ico_pw.png) no-repeat 2px 4px transparent
+}
+.sapUiLogin .sapMInput.sapMInputBase.sapMInputBaseWidthPadding.sapUiId .sapMInputBaseInner {
+    padding-left: 50px;
+    color: #e1e1e1 !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+}
+.sapUiLogin .sapMInput.sapMInputBase.sapMInputBaseWidthPadding.sapUiPw .sapMInputBaseInner {
+    padding-left: 50px;
+    color: #e1e1e1 !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+}
+.sapUiLogin .sapMInputBase {
+    height: 3rem
+}
+.sapUiLogin .sapMInputBaseInner {
+    height: 2.5rem;
+    background-color: rgba(0, 0, 0, 0);
+}
+.sapUiLogin .loginBtn .sapMBtnInner {
+    width: 345px;
+    background: #2b447a;
+    border: 1px solid #25375d;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.sapUiLogin .pwdRecoveryBtn .sapMBtnInner {
+    width: 175px;
+    background: #2b447a;
+    border: 1px solid #25375d;
+    border-radius: 25px;
+    color: #ffffff;
+}
+.sapUiLogin .sapUiFormResLayout>div {
+    background-color: transparent !important
+}
+/*Shell Header - Bar*/
+
+.imHeaderBar .sapUiUfdShellHeader {
+    background-color: #2b447a
+}
+.imHeaderBar .sapUiUfdShellHeadBegin {
+    background-color: #2b447a;
+    max-width: 350px;
+}
+.imHeaderBar .sapUiUfdShellHeadCenter {
+    background-color: #2b447a
+}
+.imHeaderBar .sapUiUfdShellHeadEnd {
+    background-color: #2b447a
+}
+.imHeaderBar .sapMBarContainer {
+    background-color: #bbb
+}
+.imHeaderBar .sapMBarContainer .sapMBarChild {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #000;
+    font-weight: bold;
+}
+.imHeaderBar .sapUiUfdShellHeadItm>span {
+    background-color: #2b447a !important
+}
+.imHeaderBar .sapUiUfdShellHeadItm>span:hover,
+.imHeaderBar .sapUiUfdShellHeadUsrItm:hover,
+.imHeaderBar .sapUiUfdShellHeadUsrItm .sapUiUfdShellHeadUsrItmImg,
+.imHeaderBar .sapUiUfdShellHeadUsrItm .sapUiUfdShellHeadUsrItmImg:hover,
+.imHeaderBar .sapUiUfdShellHeadUsrItm .imHeaderBar .sapUiUfdShellHeadUsrItm .sapUiUfdShellHeadUsrItmName:hover,
+.imHeaderBar .sapUiUfdShellHeadUsrItm .sapUiUfdShellHeadUsrItmExp,
+.imHeaderBar .sapUiUfdShellHeadUsrItm .sapUiUfdShellHeadUsrItmExp:hover {
+    background-color: #2b447a
+}
+.imHeaderBar .sapUiUfdShellHeadUsrItmName {
+    color: white
+}
+.imHeaderBar .sapUiUfdShellHeadUsrItmImg {
+    vertical-align: top;
+    color: white
+}
+.imHeaderBar .sapMIBar.sapMSubHeader-CTX {
+    background: #bbb;
+}
+.imHeaderBar .sapMBarContainer .imMidHeaderText {
+    color: #2B447A;
+}
+/*Shell Header - Logo*/
+
+.sapUiUfdShellHeadBegin {
+    max-width: 350px;
+}
+.sapUiUfdShellHeadEnd>.sapUiUfdShellIco>img,
+.sapUiUfdShellHeadBegin>.sapUiUfdShellIco>img {
+    max-height: 45px;
+    max-width: 280px;
+    vertical-align: middle;
+}
+/*Shell Header - SAP Image*/
+
+.sapUiUfdShellHeadItm>span>img {
+    margin-top: 4px;
+    width: 35px;
+    height: 22px;
+    border-width: 0;
+}
+
+.sapMPanelContent {
+    padding: 0.25rem;
+}
+
+.sapUiFormResGridCont>div {
+    padding: 0 0.25rem 0.25rem 0.25rem;
+}
+.sapMTB-Info-CTX.sapMTB {
+    height: 1rem;
+    padding: 0 .25rem 0 0.5rem;
+    background:  #949494;
+    border-bottom: 1px solid;
+}
+
+sapMListTblRow .sapMListTblHeader {
+    width: 100%;
+    height:50px;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+.sapMTB-Info-CTX .sapMText {
+    /*font-style: italic;*/
+    font-size: 0.75rem;
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #ffce00;
+}
+
+.sapMText {
+    font-size: 0.85rem;
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: normal;
+    font-weight: bold;
+}
+
+.sapMUCFileName.sapMLnk {
+    font-size: 0.85rem;
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: normal;
+    font-weight: bold;
+}
+
+.sapMTB-Transparent-CTX>.sapMTitleTB.sapMTitleStyleAuto {
+    /*font-size: 0.85rem;*/
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: normal;
+    font-weight: bold;    
+}
+.sapMListNoDataText .sapMFeedListItemTextName {
+    font-size: 0.85rem;
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: normal;
+    font-weight: bold;
+}
+
+.sapMObjLIntro {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #666666;
+    font-size: 0.975rem;
+    padding-bottom: .75rem;
+    font-weight: bold;    
+}
+.sapMTextLineClamp {
+    display: -webkit-box;
+    color:#ffa700;
+    -webkit-box-orient: vertical;
+    font-weight:bold;
+}
+
+.sapMObjStatus {
+    font-style: italic;
+    font-size: 0.85rem;
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #ffce00;
+}
+.sapUiFormResGrid>div {
+    padding: 0.75rem;
+    padding-top: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 0.75rem;
+    box-sizing: border-box;
+}
+
+.sapMPanelContent {
+    padding: 0;
+}
+
+.sapMSLIDiv.sapMSLITitleDiv {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+    padding-left: 0.25rem;    
+    color:#111111;
+}
+
+
+.sapMStdTileTitle {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight:bold;
+    line-height: 1.4rem;
+    vertical-align: top;
+    text-align: left;
+    font-size: 1rem;
+    height: 4rem;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+.sapMStdTileInfo {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+    font-size: 0.875rem;
+    margin-top: 2rem;
+    color: #666666;    
+}
+
+.sapMSlt>.sapMSltLabel {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;	
+    width: 100%;
+    line-height: 2.375rem;
+    color:  #4b4b4b;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+.sapMInputBaseInner {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+.sapMSLIDescription {
+    font-size: 0.875rem;
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.sapMSelectList {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.sapMObjectAttributeDiv {
+    font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    font-weight: normal;
+    color:  #4b4b4b;    
+    outline: none;
+}
+
+.sapMITBText {
+font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;	
+font-weight:bold;
+}
+
+.sapUiBtnS>.sapUiBtnTxt {
+	font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;	    
+    vertical-align: middle;
+    line-height: 18px;
+    display: inline-block;
+    height: 18px;
+    margin-top: -1px;
+}
+
+.sapMListTblCell.sapMListTblCellNoData {
+	font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;	    
+    font-size: 0.75rem;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    line-height: 1.6;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.sapMListTbl .sapMText, .sapMListTbl .sapMLabel {
+    padding-top: 1px;
+    font-size: 0.875rem;
+    color: #333333;
+    font-weight: bold;
+}
+
+.sapMSLIImgIcon {
+    font-size: 1rem;
+    color: #111111;
+    margin-left: -1rem;
+}
+
+.customDeleteTable .sapMListModeDelete .sapMLIBShowSeparator .sapMListTblSelCol .sapMLIBSelectD .sapMLIBIconDel:before
+	{
+	content: url('../images/im_delete.png');
+}
+
+.sapMBtn {
+    height: 3rem;
+    margin: 0;
+    padding: 0.250rem;
+    vertical-align: top;
+    font-weight:bold;
+}
+
+.sapMBtnContent {
+	font-family: "Segoe UI Light", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;	        
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+    line-height: 2.375rem;
+}

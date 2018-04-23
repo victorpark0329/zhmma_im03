@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ZHMMA_IM02">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/WebContent/META-INF/src"/>
+        <property name="context-root" value="ZHMMA_IM02"/>
+        <property name="java-output-path" value="/ZHMMA_IM02/build/classes"/>
+    </wb-module>
+</project-modules>

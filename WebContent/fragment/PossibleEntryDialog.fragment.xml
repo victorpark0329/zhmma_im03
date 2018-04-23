@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		noDataText="No Items Found"
+		search="zhmmaim.util.Commons.handleSearch"
+		confirm="zhmmaim.util.Commons.handleClose"
+		close="zhmmaim.util.Commons.handleClose"
+		items="{path:'/results'}" >
+		<StandardListItem
+			title="{INPUT}"
+			description="{TEXT}"
+			type="Active"
+			growing="true"
+			growingThreshold="20"
+			/>
+	</SelectDialog>
+</core:FragmentDefinition> 

@@ -1,0 +1,11 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="zhmmaim.controller.InboxMenu" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Inbox Menu" showNavButton="true" navButtonPress="onNavBack">
+		<!-- HMMA IM Menu List -->
+		<List includeItemSelection="true" type="Active" insert="true">
+				<StandardListItem id="pvinbox" title="Private Inbox" type="Active" press="onMenuPress"/>
+				<StandardListItem id="pvoutbox" title="Private Outbox" type="Active" press="onMenuPress"/>
+				<StandardListItem id="dpoutbox" title="Department Outbox" type="Active" press="onMenuPress"/>
+		</List>
+	</Page>
+</core:View>

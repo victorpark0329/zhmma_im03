@@ -1,0 +1,108 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:commons="sap.ui.commons" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="ABPCommons" showHeader="false" class="updateABPPlanningCommons" enableScrolling="false">
+		<!-- Project Information -->
+		<form:SimpleForm id="ABPHeader" minWidth="1024" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="1" emptySpanM="1" columnL="1" columnM="1" title="HEADER" class="updatedSimpleForm">
+			<form:content>
+				<Label text="Project" required="true" class="sapUiSmallMarginTop" textAlign="Begin"/>
+				<Input id="GJAHR" required="true" type="Number" placeholder="Project plan year">
+				<layoutData>
+					<l:GridData span="L1 M1 S2"/>
+				</layoutData>
+				</Input>
+				 
+				<Input id="ZPROJ" type="Text" placeholder="Project Code" value="" required="true" maxSuggestionWidth="350px" showSuggestion="true" showValueHelp="true" suggestionRows="{/results}" change="zhmmaim.util.Commons.onDescription" liveChange="zhmmaim.util.Commons.onCallPossible" valueHelpRequest="zhmmaim.util.Commons.showAllList">
+						<suggestionColumns>
+								<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+									<Label text="Code"/> 
+								</Column>
+								<Column hAlign="Begin" popinDisplay="Inline" demandPopin="true">
+									<Label text="Info"/>
+								</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{INPUT}"/>
+									<Label text="{TEXT}"/>
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+				<layoutData>
+					<l:GridData span="L2 M2 S2"/>
+				</layoutData>
+				</Input>
+				
+				<Input id="ZPROJD" type="Text" value="{/ZPROJD}" editable="false"/>
+				<Label text="Description" required="true" class="sapUiSmallMarginTop"/>
+				<Input id="KTEXT" required="true" type="Text" value="{/KTEXT}"/>
+			</form:content>
+		</form:SimpleForm>
+		
+		<!-- Detail Table Information -->
+		<Panel>
+			<headerToolbar>
+				<Toolbar class="updatedToolBarHeaderTitle2">
+					<Title text="ITEM"/>
+					<Button id="oABPAdd" icon="sap-icon://add" press="onABPCreate"/>
+					<Title text="(Click first column to see the detail)" level="H4" titleStyle="H6"/>
+				</Toolbar>
+			</headerToolbar>
+			<content>
+				<!--<form:SimpleForm id="ABPItem" minWidth="1024" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnL="1" columnM="1" class="updatedItemBody" width="100%">-->
+				<form:SimpleForm id="ABPItem" layout="ResponsiveGridLayout">
+					<form:content>
+						<table:Table id="oDetaTB" visibleRowCount="17" class="sapUiSmallMarginBottom" rows="{/}" selectionMode="Single" noDataText="No Data" rowSelectionChange="zhmmaim.util.Commons.toABPDetail">
+							<!-- rows="{/IMABPDetaNavi/results}" -->
+								<table:columns>
+									<!-- <table:Column width="3rem">
+										<Text text="SEQ"/>
+										<table:template>
+											<commons:TextField value="{BGTSEQ}"/>
+										</table:template>
+									</table:Column> -->
+									<table:Column width="4rem">
+										<Text text="Priority"/>
+										<table:template>
+											<!--<commons:TextField value="{PRIORI}"/>-->
+											<commons:TextField value="{PRIORID}"/>
+										</table:template>
+									</table:Column>
+									<table:Column width="5rem">
+										<Text text="IM.Reason"/>
+										<table:template>
+											<!--<commons:TextField value="{IZWEK}"/>-->
+											<commons:TextField value="{IZWEKD}" width="50rem"/>
+										</table:template>
+									</table:Column>
+									<table:Column width="15rem">
+										<Text text="Description"/>
+										<table:template>
+											<commons:TextField value="{TXT50}" width="50rem"/>
+										</table:template>
+									</table:Column>
+									<table:Column width="15rem">
+										<Text text="Purpose"/>
+										<table:template>
+											<commons:TextField value="{PURPO}" width="50rem"/>
+										</table:template>
+									</table:Column>
+									<table:Column width="6rem">
+										<Text text="Budget"/>
+										<table:template>
+											<commons:TextField id="total" textAlign="Right" value="{path:'TOTA',type:'sap.ui.model.type.Float'}"/>
+										</table:template>
+									</table:Column>
+									<table:Column width="3rem" id="idABPdelete">
+										<Text text="Delete"/>
+										<table:template>
+											<Image src="resources/images/delete.png" width="15px" height="15px" press="onDeleteABPItem"/>
+										</table:template>
+									</table:Column>
+								</table:columns>
+							</table:Table>
+					</form:content>
+				</form:SimpleForm>
+			</content>
+		</Panel>
+	</Page>
+</core:FragmentDefinition>

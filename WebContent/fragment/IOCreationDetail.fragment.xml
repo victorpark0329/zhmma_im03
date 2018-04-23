@@ -1,0 +1,274 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:unified ="sap.ui.unified"
+	xmlns:table="sap.ui.table" xmlns:commons="sap.ui.commons" xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="IOCreationDetail" showHeader="false" class="InboxSubHeader test04 sapUiIOCreation">
+		<subHeader>
+			<Bar> 
+				<contentLeft>
+					<Text text="{/BTSUBJ}"/>
+				</contentLeft>
+				<contentMiddle>
+					<Text id="oConfirmD" class="imMidHeaderText"/>
+				</contentMiddle>
+				<contentRight>
+					<Text text="Document No."/>
+					<Text text="{/BGTDOC}"/>
+					<!-- <Button id="edit" text="Edit" press="onEditPress" /> -->
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<IconTabBar id="oIconTab" class="sapUiResponsiveContentPadding" expanded="false">
+			<items>
+				<IconTabFilter text="WorkFlow" icon="sap-icon://manager" key="workflowInfo">
+				<commons:Button text="Approval Path" icon="sap-icon://search" visible="false"
+						press="zhmmaim.util.Commons.onSelectWorkFlow" />
+				<commons:Button id="oAddCP" text="Cooperation Path" icon="sap-icon://search"
+						press="zhmmaim.util.Commons.onSelectCooperation" />
+					<Table id="oCreateWF" columns="{/}" showNoData="false" class="tblApprovalLine">
+						<infoToolbar>
+								<Toolbar> 
+									<Text text="Approval Line" level="H5"/>
+								</Toolbar>
+							</infoToolbar>
+						<columns>
+							<Column>
+								<Text text="{DUTY_NAME}" />
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem cells="{/}">
+								<Text text="{ENGLISH_NAME}" />
+							</ColumnListItem>
+							<ColumnListItem cells="{/}">
+								<Text text="{path:'ARDAT',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'yyyyMMdd'
+													}
+												}
+											}"/>
+							</ColumnListItem>
+							<ColumnListItem cells="{/}"
+								visible="false">
+								<Text text="{USER_ID}" />
+							</ColumnListItem>
+						</items>
+					</Table>
+					<Table id="oIOCreateCP" columns="{/}" showNoData="false" class="tblCooperationLine">
+						<infoToolbar>
+								<Toolbar>
+									<Text text="Cooperation Line" level="H5"/>
+								</Toolbar>
+							</infoToolbar>
+							<columns>
+								<Column>
+									<Text text="{DUTY_NAME}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem cells="{/}">
+									<Text text="{ENGLISH_NAME}"/>
+								</ColumnListItem>
+								<ColumnListItem cells="{/}">
+								<Text text="{path:'ARDAT',
+											type:'sap.ui.model.type.Date',
+											formatOptions:{
+												pattern:'MM/dd/yyyy',
+												source:{
+													pattern:'yyyyMMdd'
+													}
+												}
+											}"/>
+								</ColumnListItem>
+								<ColumnListItem cells="{/}"  visible="false" >
+									<Text text="{USER_ID}"/>
+								</ColumnListItem>
+							</items>
+						</Table>
+						
+				</IconTabFilter>
+				<IconTabFilter text="Attachments" icon="sap-icon://attachment">
+					<!-- Attach Information -->
+					<UploadCollection id="oAlreadyUpload" 
+							maximumFilenameLength="55"
+							maximumFileSize="20" 
+							sameFilenameAllowed="true"
+							multiple="true"
+							instantUpload="false"
+							showSeparators="All"
+							uploadEnabled="false"
+							items="{/IMIOPRNavi/results/0/IMIOPRFileNavi/results/}"
+							class="cAttachmentForm">
+							<items>
+								<UploadCollectionItem
+									enableEdit="false"
+									enableDelete="false"
+									visibleDelete="false"
+									visibleEdit="false"
+									fileName="{ID}"
+									url="{URI}">
+								</UploadCollectionItem>
+							</items>
+						</UploadCollection>
+						<UploadCollection
+							id="oUploadCollection"
+							noDataText="No Data"
+							maximumFilenameLength="500"
+							maximumFileSize="20"
+							multiple="true"
+							sameFilenameAllowed="true"
+							instantUpload="false"
+							showSeparators="All"
+							class="cAttachmentForm">
+					</UploadCollection>
+				</IconTabFilter>
+				<IconTabFilter text="Summary" icon="sap-icon://image-viewer">
+						<!-- Attach Information -->
+						<form:SimpleForm id="IOImageDisplay">
+							<form:content>
+								<unified:FileUploader
+									id="oImageUploader"
+									name="myFileUpload"
+									width="400px"
+									visible="false"
+									tooltip="jpg,bmp,gif,tif file only"
+									uploadComplete="handleUploadComplete"
+									change="handleImageChange"
+									typeMissmatch="handleTypeMissmatch"
+									style="Emphasized"
+									fileType="jpg,bmp,gif,tif"
+									placeholder="Choose a Image for Upload..."/>
+							</form:content>
+						</form:SimpleForm>
+						<Image
+							id="oImage"
+							densityAware="false"
+							width="1000px" >
+						</Image>
+					</IconTabFilter>
+				<IconTabFilter text="Comment" icon="sap-icon://comment" key="commentInfo">
+					<!-- Comment Information -->
+					<form:SimpleForm
+						layout = "ResponsiveGridLayout"
+						labelSpanL = "2"
+						labelSpanM = "2"
+						emptySpanL = "1"
+						emptySpanM = "1"
+						columnL = "1"
+						columnM = "1">
+						<form:content>
+							<Label id="SwitchText" text="Need to Cooperation?" class="sapUiSmallMarginTop">
+								<layoutData>
+									<l:GridData span="L2 M2 S2" />
+								</layoutData>
+							</Label>
+							<Switch id="SwitchCP" type="Default" state="false" change="onSwitchCP" class="sapUiSmallMarginBegin">
+								<layoutData>
+									<l:GridData span="L1 M1 S1"/>
+								</layoutData>
+							</Switch>
+							<Input id="oRVSearch" type="Text" visible="false" value="" enabled="false"
+									maxSuggestionWidth="700px"
+									showTableSuggestionValueHelp="false"
+									showSuggestion="true"
+									suggestionRows="{/results}"
+									liveChange="onCallRVPossible">
+									<suggestionColumns>
+											<Column
+												hAlign="Begin"
+												popinDisplay="Inline"
+												demandPopin="true">
+												<Label text="Name"/> 
+											</Column>
+											<Column
+												hAlign="Begin"
+												popinDisplay="Inline"
+												demandPopin="true">
+												<Label text="Title"/>
+											</Column>
+											<Column
+												hAlign="Begin"
+												popinDisplay="Inline"
+												demandPopin="true">
+												<Label text="Dept Name"/>
+											</Column>
+											<Column
+												hAlign="Begin"
+												popinDisplay="Inline"
+												demandPopin="true">
+												<Label text="Telephone"/>
+											</Column>
+									</suggestionColumns>
+									<suggestionRows>
+										<ColumnListItem>
+											<cells>
+												<Label text="{ENGLISH_NAME}"/>
+												<Label text="{DUTY_NAME}"/>
+												<Label text="{DEPT_NAME}"/>
+												<Label text="{TELEPHONE}"/>
+											</cells>
+										</ColumnListItem>
+									</suggestionRows>
+									<layoutData>
+									<l:GridData span="L2 M2 S2" />
+									</layoutData>
+							</Input>
+							
+							<Label text="Comment" class="sapUiSmallMarginTop"/>
+							<TextArea id="comment" 
+								row="3" 
+								cols="30"
+								wrapping="Soft"
+								liveChange="handleLiveChange"/>
+							<Label/>
+							<List id="oApprTextList" items="{/}" showNoData="false">
+								<FeedListItem
+									sender="{ENGLISH_NAME}"
+									text = "{RTEXT}" 
+									info = "{STATUS}"
+									timestamp = "{path:'TIMESTAMP',
+													type:'sap.ui.model.type.Date',
+													formatOptions:{
+														pattern:'MM/dd/yyyy',
+														source:{
+															pattern:'yyyyMMdd'
+															}
+														}
+													}"
+									showIcon="false"
+								/>							
+							</List>
+							<Label/>
+							<List>
+								<FeedListItem
+									id="getValue"
+									sender="(Approver){USER_ID}"
+									text = ""
+									showIcon="false"
+								/>							
+							</List>
+						</form:content>
+					</form:SimpleForm>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+
+		<!-- Call the IOCreationCommons.fragment.xml -->
+		<core:Fragment fragmentName="zhmmaim.fragment.IOCreationCommons" type="XML"/>
+	
+		<footer>
+			<Bar>
+				<contentRight>
+					<ToggleButton icon="sap-icon://save" type="Emphasized" press="zhmmaim.util.AttachPrint.generatePDF"/>
+					<ToggleButton id="Approve" type="Emphasized" text="Approve" press="onApproveDialog" />
+					<ToggleButton id="Reject" type="Emphasized" text="Reject" press="onRejectDialog" />
+					<ToggleButton id="Consider" type="Emphasized" text="Consideration" visible="false" press="onConsiderDialog"/>
+				</contentRight>
+			</Bar>
+		</footer>
+		<!-- Print/ Auto Attach Hidden Area -->
+            <core:Fragment fragmentName="zhmmaim.fragment.IOCreationCommonsPdf" type="XML"/>
+	</Page>
+</core:FragmentDefinition>

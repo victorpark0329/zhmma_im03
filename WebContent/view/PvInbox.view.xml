@@ -1,0 +1,75 @@
+<mvc:View controllerName="zhmmaim.controller.PvInbox"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns:table="sap.ui.table" xmlns="sap.m" xmlns:form="sap.ui.layout.form">
+	<SplitApp id="oSplitApp">
+		<masterPages>
+			<!-- title="Private Inbox"  -->
+			<Page showNavButton="true" navButtonPress="onNavBack">
+				<subHeader>
+					<Bar>
+						<contentLeft>
+							<SearchField
+								search = "InboxhandleSearch"
+								width="100%"
+							/>
+						</contentLeft>
+					</Bar>
+				</subHeader>
+				<List id="oPvInboxList" 
+					noDataText="No Data"
+					enableBusyIndicator="true" 
+					growing="true"
+					mode="SingleSelectMaster" 
+					selectionChange="gotoDetail" 
+					items="{
+						path:'/results',
+						sorter:{
+							path:'DATE',
+							descending:'true'
+							}
+						}"> 
+					<items>
+						<ObjectListItem intro="{DOC_TYPE}" title="{BTSUBJ}"
+							type="Active">
+							<attributes>
+								<ObjectAttribute text="{USER_NAME}" />
+								<!-- Date Format **** -->
+								<ObjectAttribute
+									text="
+					             			{path:'DATE',
+					             			type:'sap.ui.model.type.DateTime',
+								            formatOptions:{
+								                source: {
+								                    pattern:'yyyy-MM-ddTHH:mm:ss'
+								                },
+								                relative:true,
+								                relativeScale:'auto'
+								            }}" />
+							</attributes>
+							<firstStatus>
+								<ObjectStatus
+									text="{TITLE}"
+									state="Warning"
+								/>
+							</firstStatus>
+						</ObjectListItem>
+					</items>
+				</List>
+			</Page>
+		</masterPages>
+		<detailPages>
+			<Page id="oPvInboxDetail">
+				<customHeader>
+					<Bar>
+						<contentLeft>
+							<Button id="onHideInspect" icon="sap-icon://full-screen" press="onHideMenu" />
+						</contentLeft>
+						<contentMiddle>
+							<!-- <Text text="Private Detail Inbox" /> -->
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+			</Page>
+		</detailPages>
+	</SplitApp>
+</mvc:View>
